@@ -33,7 +33,7 @@
       <!-- ==== TÀI KHOẢN / YÊU THÍCH / GIỎ HÀNG ==== -->
       <div class="right-block">
         <button class="icon-btn"><i class="fa-regular fa-user"></i><span> Tài Khoản</span></button>
-        <button class="icon-btn"><i class="fa-regular fa-heart"></i></button>
+        <a href="yeuThich.html" id="wishlistBtn" class="cart icon-btn" title="Sản phẩm yêu thích"><i class="fa-regular fa-heart"></i><span id="wishlistCount">0</span></a>
         <div id="cartBtn" class="cart icon-btn"><i class="fa-solid fa-cart-shopping"></i><span id="cartCount">0</span></div>
       </div>
 
@@ -75,12 +75,13 @@
       </div>
 
       <div class="filter-block">
-        <h5>Hãng</h5>
+        <h5>Hãng / Sản phẩm (BCAA)</h5>
         <div class="brand-list">
-          <label><input type="checkbox" class="brand-checkbox" value="AMIX"> AMIX</label><br>
-          <label><input type="checkbox" class="brand-checkbox" value="APPLIED NUTRITION"> APPLIED NUTRITION</label><br>
-          <label><input type="checkbox" class="brand-checkbox" value="BIOTECH USA"> BIOTECH USA</label><br>
-          <label><input type="checkbox" class="brand-checkbox" value="RULE1"> RULE1</label>
+          <label><input type="checkbox" class="brand-checkbox" value="bcaa"> BCAA</label><br>
+          <label><input type="checkbox" class="brand-checkbox" value="amino"> Amino</label><br>
+          <label><input type="checkbox" class="brand-checkbox" value="hydrate"> Hydrate</label><br>
+          <label><input type="checkbox" class="brand-checkbox" value="glutamine"> Glutamine</label><br>
+          <label><input type="checkbox" class="brand-checkbox" value="lemon"> Lemon (flavour)</label>
         </div>
       </div>
 
@@ -118,7 +119,7 @@
     </section>
   </main>
 
-<footer class="site-footer">
+  <footer class="site-footer">
     <div class="footer-top">
       <div class="ft-icons">
         <div class="ft-icon"><i class="fa-solid fa-truck-fast"></i>
@@ -149,7 +150,6 @@
             <li>Kiểm Tra Đơn hàng</li>
           </ul>
         </div>
-
         <div class="ft-col">
           <h4>TÍCH ĐIỂM</h4>
           <ul>
@@ -157,19 +157,16 @@
             <li>Thành Viên VIP</li>
           </ul>
         </div>
-
         <div class="ft-col">
           <h4>CHI NHÁNH 1</h4>
-          <p>Liên Hệ: 0901 415 067</p>
+          <p>Liên Hệ: 0903324511</p>
           <p>123 Đường Mới, P.1, Q.1, TP.HCM</p>
         </div>
-
         <div class="ft-col">
           <h4>CHI NHÁNH 2</h4>
-          <p>Liên Hệ: 0901 315 067</p>
+          <p>Liên Hệ: 0901326987</p>
           <p>285/66 Cách Mạng Tháng Tám, P.12, Q.10, TP.HCM</p>
         </div>
-
         <div class="ft-col">
           <h4>CHÍNH SÁCH MUA HÀNG</h4>
           <ul>
@@ -181,31 +178,39 @@
         </div>
       </div>
 
-      <div class="footer-extras">
+      <div class="footer-extras">                           
         <div class="social">
           <h5>THEO DÕI SHOP TẠI:</h5>
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/DNHuyHoang" class="social-fb"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/youngkh.04/" class="social-instagram"><i class="fab fa-instagram"></i></a>
         </div>
-
         <div class="tax">
           <h5>MÃ SỐ THUẾ:</h5>
-          <div>3603416620</div>
-          <div style="margin-top:6px; font-weight:700">CÔNG TY TNHH NHỊ GIA NGUYỄN</div>
-          <div>6/3 Kp.1, P. Tân Hòa, Tp Biên Hòa, Tỉnh Đồng Nai</div>
+          <div>3903327891</div>
+          <div style="margin-top:6px; font-weight:700">CÔNG TY TNHH YOUNGKH WHEY</div>
+          <div>321 Đường Phạm Văn Đồng P.Hạnh Thông Q.Gò Vấp TP.Hồ Chí Minh</div>
         </div>
-
         <div class="bct">
           <h5>ĐÃ THÔNG BÁO</h5>
-          <img src="../IMG/bocongthuong.png" alt="Đã thông báo Bộ Công Thương" style="max-width:140px;">
+          <img src="/IMG/bocongthuong.png" alt="Đã thông báo Bộ Công Thương" style="max-width:140px;">
         </div>
       </div>
     </div>
+    
 
     <div class="footer-bottom">
-      <div>© 2025 YOUNGKH WHEY</div>
-      <div>Đăng ký: 2/11/2025</div>
+      <div>Bản quyền thuộc về @YOUNGKH WHEY  .</div>
+      <div class="payments">
+        <div>Những sản phẩm đăng trên website không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.</div>
+        <div style="margin-left:18px; display:inline-flex; gap:10px; align-items:center">
+          <i class="fab fa-cc-visa" title="Visa"></i>
+          <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+          <i class="fab fa-cc-paypal" title="PayPal"></i>
+        </div>
+      </div>
     </div>
+    
+    
   </footer>
   <!-- ====== JS ====== -->
   <script src="phonggym.js"></script>

@@ -3,9 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Chi tiết sản phẩm</title>
-  <link rel="stylesheet" href="phonggym.css">
+  <link rel="stylesheet" href="chitietsp.css">
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Pulse animation for header wishlist count */
+    .badge-pulse { animation: wishPulse .7s ease; }
+    @keyframes wishPulse {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.35); }
+      100% { transform: scale(1); }
+    }
+  </style>
 </head>
 <body>
     <header class="site-header">
@@ -32,20 +41,40 @@
       <!-- ==== TÀI KHOẢN / YÊU THÍCH / GIỎ HÀNG ==== -->
       <div class="right-block">
         <button class="icon-btn"><i class="fa-regular fa-user"></i><span> Tài Khoản</span></button>
-        <button class="icon-btn"><i class="fa-regular fa-heart"></i></button>
+        <a href="yeuThich.html" id="wishlistBtn" class="cart icon-btn" title="Sản phẩm yêu thích"><i class="fa-regular fa-heart"></i><span id="wishlistCount">0</span></a>
         <div id="cartBtn" class="cart icon-btn"><i class="fa-solid fa-cart-shopping"></i><span id="cartCount">0</span></div>
       </div>
 
     </div>
   </header>
-<section class="promo-banner">
-    <img src="/IMG/giam gia.png" alt="promo banner" onerror="this.style.display='none'">
-  </section>
+
+  <!-- ====== GIỎ HÀNG (panel hiển thị khi thêm sản phẩm) ====== -->
+  <aside id="cartPanel" class="cart-panel hidden">
+    <div class="cart-head">
+      <h3>Giỏ hàng</h3>
+      <button id="closeCart" class="icon-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-foot">
+      <div>Tổng: <strong id="cartTotal">0₫</strong></div>
+      <button id="checkoutBtn" class="btn-primary">Thanh toán</button>
+    </div>
+  </aside>
+
+  <!-- Mini-wishlist removed: header badge shows count only (no popup) -->
+
   <main class="container" style="max-width:1200px;margin:20px auto;padding:0 18px">
     <div id="productDetail">Đang tải...</div>
   </main>
+  <section class="promo-banner">
+    <img src="/IMG/giam gia.png" alt="promo banner" onerror="this.style.display='none'">
+  </section>
+  <section class="promo-banner">
+    <img src="/IMG/banner.png" alt="promo banner" onerror="this.style.display='none'">
+  </section>
+  
 
- <footer class="site-footer">
+  <footer class="site-footer">
     <div class="footer-top">
       <div class="ft-icons">
         <div class="ft-icon"><i class="fa-solid fa-truck-fast"></i>
@@ -76,7 +105,6 @@
             <li>Kiểm Tra Đơn hàng</li>
           </ul>
         </div>
-
         <div class="ft-col">
           <h4>TÍCH ĐIỂM</h4>
           <ul>
@@ -84,19 +112,16 @@
             <li>Thành Viên VIP</li>
           </ul>
         </div>
-
         <div class="ft-col">
           <h4>CHI NHÁNH 1</h4>
-          <p>Liên Hệ: 0901 415 067</p>
+          <p>Liên Hệ: 0903324511</p>
           <p>123 Đường Mới, P.1, Q.1, TP.HCM</p>
         </div>
-
         <div class="ft-col">
           <h4>CHI NHÁNH 2</h4>
-          <p>Liên Hệ: 0901 315 067</p>
+          <p>Liên Hệ: 0901326987</p>
           <p>285/66 Cách Mạng Tháng Tám, P.12, Q.10, TP.HCM</p>
         </div>
-
         <div class="ft-col">
           <h4>CHÍNH SÁCH MUA HÀNG</h4>
           <ul>
@@ -108,32 +133,41 @@
         </div>
       </div>
 
-      <div class="footer-extras">                                             
+      <div class="footer-extras">                           
         <div class="social">
           <h5>THEO DÕI SHOP TẠI:</h5>
-          <a href="https://www.facebook.com/woocs.junz"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/_woocs.junz_/"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/DNHuyHoang" class="social-fb"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/youngkh.04/" class="social-instagram"><i class="fab fa-instagram"></i></a>
         </div>
-
         <div class="tax">
           <h5>MÃ SỐ THUẾ:</h5>
-          <div>3603416620</div>
-          <div style="margin-top:6px; font-weight:700">CÔNG TY TNHH NHỊ GIA NGUYỄN</div>
-          <div>6/3 Kp.1, P. Tân Hòa, Tp Biên Hòa, Tỉnh Đồng Nai</div>
+          <div>3903327891</div>
+          <div style="margin-top:6px; font-weight:700">CÔNG TY TNHH YOUNGKH WHEY</div>
+          <div>321 Đường Phạm Văn Đồng P.Hạnh Thông Q.Gò Vấp TP.Hồ Chí Minh</div>
         </div>
-
         <div class="bct">
           <h5>ĐÃ THÔNG BÁO</h5>
           <img src="/IMG/bocongthuong.png" alt="Đã thông báo Bộ Công Thương" style="max-width:140px;">
         </div>
       </div>
     </div>
+    
 
     <div class="footer-bottom">
-      <div>© 2025 YOUNGKH WHEY</div>
-      <div>Đăng ký: 2/11/2025</div>
+      <div>Bản quyền thuộc về @YOUNGKH WHEY  .</div>
+      <div class="payments">
+        <div>Những sản phẩm đăng trên website không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.</div>
+        <div style="margin-left:18px; display:inline-flex; gap:10px; align-items:center">
+          <i class="fab fa-cc-visa" title="Visa"></i>
+          <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+          <i class="fab fa-cc-paypal" title="PayPal"></i>
+        </div>
+      </div>
     </div>
+    
+    
   </footer>
+
 
   <script src="phonggym.js"></script>
   <script>
@@ -154,14 +188,94 @@
         return;
       }
 
-      const gallery = Array.isArray(p.images) && p.images.length ? p.images : [p.img];
-      const related = (productList || []).filter(x => x.category === p.category && x.id !== p.id).slice(0,3);
+      const gallery = Array.isArray(p.images) && p.images.length ? p.images.slice() : [p.img];
+      // Ensure we have at least 3 images to fill thumbnails — duplicate the main image if necessary
+      while (gallery.length < 3) gallery.push(gallery[0]);
+
+      // If a product has no explicit variants (mùi), generate a deterministic set so
+      // every product shows unique flavor options on the detail page.
+      
+
+      // prepare badge HTML with contextual class (discount vs gift)
+      const badgeHtml = (function(b){
+        if (!b) return '';
+        const txt = String(b).trim();
+        if (txt.startsWith('-') || txt.match(/\d+%/)) return `<span class="badge badge-discount large">${txt}</span>`;
+        if (txt.toUpperCase().includes('TẶNG') || txt.toUpperCase().includes('QUÀ')) return `<span class="badge badge-gift large">${txt}</span>`;
+        return `<span class="badge large">${txt}</span>`;
+      })(p.badge);
+
+      // helper: generate a short description when none is provided in product data
+      function generateDescription(prod) {
+        try {
+          const title = prod.title || 'Sản phẩm';
+          const cat = prod.category ? `Loại: ${prod.category}.` : '';
+          const price = prod.price ? `Giá: ${formatPrice(prod.price)}.` : '';
+          const stock = (prod.stock === false) ? 'Hiện tại: Hết hàng.' : 'Hiện tại: Còn hàng.';
+          return `${title} — ${cat} ${price} ${stock} Sản phẩm chất lượng, phù hợp cho người tập luyện và phục hồi cơ bắp.`;
+        } catch (e) { return '' }
+      }
+  // related deals: same category, not the same product, only include items that are in stock
+  const related = (productList || []).filter(x => x.category === p.category && x.id !== p.id && x.stock !== false).slice(0,3);
 
       root.innerHTML = `
         <div class="product-detail">
-          <div class="pd-gallery">
+            <div class="pd-gallery">
+              <!-- Promotional / trust card to the left of the gallery to fill empty space and boost conversion -->
+              <div class="pd-side-promo" aria-hidden="false">
+                <div class="promo-head">
+                  <strong>ƯU ĐÃI ĐẶC BIỆT</strong>
+                  <div class="promo-sub">Mua ngay - Số lượng có hạn</div>
+                </div>
+                <ul class="promo-benefits">
+                  <li><i class="fa-solid fa-truck-fast"></i> Miễn phí giao hàng nội thành</li>
+                  <li><i class="fa-solid fa-shield-halved"></i> Bảo hành & đổi trả 7 ngày</li>
+                  <li><i class="fa-solid fa-certificate"></i> Hàng chính hãng</li>
+                </ul>
+                <button class="promo-cta" type="button" onclick="(function(){document.getElementById('orderBtn')?.scrollIntoView({behavior:'smooth',block:'center'}); document.getElementById('orderBtn')?.classList.add('promo-flash'); setTimeout(()=>document.getElementById('orderBtn')?.classList.remove('promo-flash'),1200);})();">NHẬN ƯU ĐÃI</button>
+                <div class="promo-trust">
+                  <img src="/IMG/secure.png" alt="secure" onerror="this.style.display='none'"> <img src="/IMG/payment.png" alt="payment" onerror="this.style.display='none'">
+                </div>
+                  <div class="promo-testimonials">
+                    <h4>Khách hàng nói</h4>
+                    <div class="testi">“Sản phẩm dùng tốt, giao nhanh, chất lượng như mô tả.” <span>- Huy</span></div>
+                    <div class="testi">“Vị ngon, pha dễ tan, cảm nhận hiệu quả rõ rệt.” <span>- Linh</span></div>
+                  </div>
+                  <ul class="promo-specs">
+                    <li>Giao hàng nhanh trong 48h</li>
+                    <li>Đổi trả trong 7 ngày</li>
+                    <li>Hỗ trợ tư vấn miễn phí</li>
+                  </ul>
+                  <div class="promo-countdown">
+                    <div class="cd-label">Ưu đãi kết thúc trong</div>
+                    <div id="promoCountdown" class="cd-timer">--:--:--</div>
+                  </div>
+
+                  <div class="promo-video">
+                    <!-- if product has a video URL, JS will replace this iframe src -->
+                    <iframe id="promoVideoIframe" src="" title="Video sản phẩm" frameborder="0" allowfullscreen></iframe>
+                  </div>
+
+                  <div class="promo-nutrition">
+                    <h4>Bảng dinh dưỡng (mẫu)</h4>
+                    <table>
+                      <tr><th>Thành phần</th><th>Mỗi khẩu phần</th></tr>
+                      <tr><td>Calories</td><td>120 kcal</td></tr>
+                      <tr><td>Protein</td><td>24 g</td></tr>
+                      <tr><td>Carbs</td><td>3 g</td></tr>
+                      <tr><td>Fat</td><td>1.5 g</td></tr>
+                    </table>
+                  </div>
+
+                  <div class="promo-faq">
+                    <h4>Câu hỏi thường gặp</h4>
+                    <div class="faq-item"><button class="faq-q">Sản phẩm dùng như thế nào?</button><div class="faq-a">Pha 1–2 muỗng với 200–300ml nước hoặc sữa; dùng theo khuyến nghị trên nhãn.</div></div>
+                    <div class="faq-item"><button class="faq-q">Bao lâu thấy hiệu quả?</button><div class="faq-a">Tùy cơ địa và chương trình tập, thường thấy cải thiện trong 4–8 tuần kết hợp dinh dưỡng và tập luyện.</div></div>
+                    <div class="faq-item"><button class="faq-q">Có phù hợp cho người ăn kiêng không?</button><div class="faq-a">Nhiều sản phẩm có phiên bản không đường/ít carb; xem nhãn thành phần.</div></div>
+                  </div>
+              </div>
             <div class="pd-mainimg">
-              ${p.badge ? `<span class="badge large">${p.badge}</span>` : ''}
+              ${badgeHtml}
               <img id="pdMainImg" src="${gallery[0]}" alt="${p.title}">
             </div>
             <ul class="pd-thumbs">
@@ -172,13 +286,32 @@
           <div class="pd-info">
             <div class="pd-supplier">Nhà cung cấp: <strong>${p.supplier||'N/A'}</strong></div>
             <h1 class="pd-title">${p.title}</h1>
+            ${p.badge ? `<span class="pd-badge-inline ${String(p.badge).trim().startsWith('-') || String(p.badge).match(/\d+%/) ? 'discount' : 'gift'}">${p.badge}</span>` : ''}
             <div class="pd-views"><i class="fa-regular fa-eye"></i> 10 người đang xem sản phẩm tại lúc này</div>
 
             <div class="pd-price-row">
               ${p.oldPrice ? `<div class="old-price">${formatPrice(p.oldPrice)}</div>` : ''}
               <div class="price">${formatPrice(p.price)}</div>
             </div>
+            <div class="pd-stock">${p.stock === false ? '<span class="out">Hiện tại: Hết hàng</span>' : '<span class="in">Hiện tại: Còn hàng</span>'}</div>
             ${p.oldPrice ? `<div class="pd-discount">Giảm giá: ${formatPrice((p.oldPrice||0)-p.price)} (${ Math.round(((p.oldPrice-p.price)/p.oldPrice)*100) }%)</div>` : ''}
+
+            ${`<div class="pd-desc">${(p.description && p.description.trim()) ? p.description : generateDescription(p)}</div>`}
+
+            <div class="pd-info-cards">
+              <div class="pd-info-card">
+                <h4>Công dụng</h4>
+                <p>${p.category ? p.category + ' giúp hỗ trợ người tập đạt mục tiêu về sức mạnh và phục hồi cơ bắp.' : 'Hỗ trợ phục hồi và tăng hiệu suất tập luyện.'}</p>
+              </div>
+              <div class="pd-info-card">
+                <h4>Cách dùng</h4>
+                <p>Hòa 1–2 muỗng với 200–300ml nước hoặc sữa, dùng trước/sau tập theo hướng dẫn trên bao bì.</p>
+              </div>
+              <div class="pd-info-card">
+                <h4>Thành phần</h4>
+                <p>Protein chất lượng, BCAA, creatine hoặc các thành phần tiêu chuẩn tuỳ loại. Xem nhãn sản phẩm để biết chi tiết.</p>
+              </div>
+            </div>
 
             ${p.variants && p.variants.length ? `
               <div class="pd-variants">
@@ -189,24 +322,50 @@
 
             <div class="pd-deals">
               <h4>Chọn thêm để tiết kiệm</h4>
-              ${related.length ? related.map(r=>`
-                <div class="deal-row ${r.stock===false?'out':''}">
-                  <img src="${r.img}" alt="${r.title}">
+              ${related.length ? related.map((r,i)=>`
+                <div class="deal-row ${r.stock===false?'out':''}" data-id="${r.id}">
+                  <input type="radio" name="dealSelect" value="${r.id}" style="flex:0 0 18px;margin-right:12px">
+                  <div class="deal-thumb"><img src="${r.img}" alt="${r.title}"></div>
                   <div class="deal-info">
                     <div class="deal-title">${r.title}</div>
-                    <div class="deal-price">${formatPrice(r.price)} ${r.oldPrice?`<span class="old-price-small">${formatPrice(r.oldPrice)}</span>`:''}</div>
+                    <div class="deal-meta">${r.badge? r.badge : ''}</div>
+                  </div>
+                  <div class="deal-pricewrap">
+                    <div class="deal-price">${formatPrice(r.price)}</div>
+                    ${r.oldPrice?`<div class="old-price-small">${formatPrice(r.oldPrice)}</div>`:''}
                   </div>
                 </div>
               `).join('') : '<div class="muted">Không có ưu đãi thêm.</div>'}
+              <div class="pd-deal-cta">NHẬN NGAY GIẢM GIÁ!</div>
+              <div class="pd-deal-note muted" style="margin-top:8px"></div>
+            </div>
+
+            <div class="pd-related">
+              <h4>Sản phẩm liên quan</h4>
+              <div class="related-track">
+                ${related.length ? related.map(r => `
+                  <div class="related-card" data-id="${r.id}" onclick="viewProduct(${r.id})">
+                    <div class="rc-thumb"><img src="${r.img}" alt="${r.title}"></div>
+                    <div class="rc-title">${r.title}</div>
+                    <div class="rc-price">${formatPrice(r.price)}</div>
+                  </div>
+                `).join('') : '<div class="muted">Không có sản phẩm liên quan.</div>'}
+              </div>
             </div>
 
             <div class="pd-purchase">
               <div class="qty-control">
-                <button id="qtyMinus" class="qty-btn">-</button>
-                <input id="qtyInput" type="number" value="1" min="1">
-                <button id="qtyPlus" class="qty-btn">+</button>
+                <button id="qtyMinus" class="qty-btn" ${p.stock === false ? 'disabled' : ''}>-</button>
+                <input id="qtyInput" type="number" value="1" min="1" ${p.stock === false ? 'disabled' : ''}>
+                <button id="qtyPlus" class="qty-btn" ${p.stock === false ? 'disabled' : ''}>+</button>
               </div>
-              <button id="orderBtn" class="btn-order">ĐẶT HÀNG</button>
+              ${p.stock === false ? `<button id="orderBtn" class="btn-outline" disabled style="background:#c0392b;color:#fff;border:none;">HẾT HÀNG</button>` : `
+                <div class="purchase-actions">
+                  <button id="addToCartBtn" class="btn-outline">Thêm vào giỏ hàng</button>
+                  <button id="addToWishlistBtn" class="btn-outline btn-wishlist"><i class="fa-regular fa-heart"></i> Yêu thích</button>
+                  <button id="orderBtn" class="btn-order">ĐẶT HÀNG</button>
+                </div>
+              `}
             </div>
 
             <div class="pd-extra">
@@ -224,19 +383,301 @@
         const s = li.getAttribute('data-src'); if (s) mainImg.src = s;
       }));
 
+      // variant / flavor buttons: single-select, click again to unselect
+      document.querySelectorAll('.variant-btn').forEach(btn => {
+        btn.addEventListener('click', ()=>{
+          const was = btn.classList.contains('selected');
+          // clear all
+          document.querySelectorAll('.variant-btn').forEach(b=>b.classList.remove('selected'));
+          // toggle selection
+          if (!was) btn.classList.add('selected');
+        });
+      });
+
+      // initialize deal rows: make row clickable and set initial selection
+      document.querySelectorAll('.deal-row').forEach(row => {
+        const radio = row.querySelector('input[type="radio"][name="dealSelect"]');
+        if (radio && radio.checked) row.classList.add('selected');
+        row.addEventListener('click', (e)=>{
+          // ignore clicks directly on disabled/out rows
+          if (row.classList.contains('out')) return;
+          if (!radio) return;
+          // Toggle behavior: if clicking the already-selected row -> unselect it
+          if (radio.checked) {
+            radio.checked = false;
+            radio.dispatchEvent(new Event('change', { bubbles: true }));
+            return;
+          }
+          // otherwise select it
+          radio.checked = true;
+          radio.dispatchEvent(new Event('change', { bubbles: true }));
+        });
+      });
+
+      // Description: add TOC (from h3/h4 inside) and a collapse toggle for long descriptions
+      (function setupDescriptionControls(){
+        const desc = document.querySelector('.pd-desc');
+        if (!desc) return;
+
+        // build TOC from h3/h4 inside desc
+        const headings = desc.querySelectorAll('h3,h4');
+        if (headings.length) {
+          const toc = document.createElement('div');
+          toc.className = 'pd-toc';
+          const list = document.createElement('ul');
+          headings.forEach((h, idx)=>{
+            if (!h.id) h.id = 'pd-desc-heading-' + idx;
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            li.appendChild(a);
+            list.appendChild(li);
+          });
+          toc.appendChild(list);
+          desc.parentNode.insertBefore(toc, desc);
+        }
+
+        // collapse/expand for long content
+        const maxH = 260; // px visible before collapsing
+        if (desc.scrollHeight > maxH) {
+          desc.style.maxHeight = maxH + 'px';
+          desc.style.overflow = 'hidden';
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'desc-toggle btn-outline';
+          btn.textContent = 'Xem thêm';
+          btn.addEventListener('click', ()=>{
+            const expanded = !desc.style.maxHeight || desc.style.maxHeight === '';
+            if (expanded) {
+              // currently expanded -> collapse
+              desc.style.maxHeight = maxH + 'px';
+              desc.style.overflow = 'hidden';
+              btn.textContent = 'Xem thêm';
+            } else {
+              // expand
+              desc.style.maxHeight = '';
+              desc.style.overflow = 'visible';
+              btn.textContent = 'Thu gọn';
+            }
+          });
+          desc.parentNode.insertBefore(btn, desc.nextSibling);
+        }
+      })();
+
       // qty controls
       const qtyInput = document.getElementById('qtyInput');
       document.getElementById('qtyPlus').addEventListener('click', ()=> qtyInput.value = Math.max(1, parseInt(qtyInput.value||1)+1));
       document.getElementById('qtyMinus').addEventListener('click', ()=> qtyInput.value = Math.max(1, parseInt(qtyInput.value||1)-1));
 
-      // order
+      // order (quick-buy): only checkout the product on this page, do NOT checkout the full cart
       document.getElementById('orderBtn').addEventListener('click', ()=>{
         const qty = Math.max(1, parseInt(qtyInput.value||1));
-        for(let i=0;i<qty;i++) addToCart(p.id);
-        alert('Đã thêm ' + qty + ' x "' + p.title + '" vào giỏ hàng.');
+        const selFlavor = document.querySelector('.variant-btn.selected')?.textContent.trim();
+
+        // Build quickBuy payload: include main product and optionally the selected deal
+        const quickBuyItems = [];
+        quickBuyItems.push({
+          id: p.id,
+          title: p.title,
+          price: p.price || 0,
+          img: Array.isArray(p.images) && p.images.length ? p.images[0] : p.img || '',
+          flavor: selFlavor || undefined,
+          qty: qty
+        });
+
+        // include selected deal if any
+        const selDeal = document.querySelector('input[name="dealSelect"]:checked');
+        if (selDeal) {
+          const rid = parseInt(selDeal.value, 10);
+          const chosen = (productList||[]).find(x=>x.id===rid);
+          if (chosen && chosen.stock !== false) {
+            quickBuyItems.push({
+              id: chosen.id,
+              title: chosen.title,
+              price: chosen.price || 0,
+              img: chosen.img || (Array.isArray(chosen.images) && chosen.images.length ? chosen.images[0] : ''),
+              qty: 1
+            });
+          }
+        }
+
+        try {
+          // store as an array of items; checkout will accept array or single object for backwards compatibility
+          sessionStorage.setItem('quickBuy', JSON.stringify(quickBuyItems));
+        } catch (e) {
+          console.warn('Could not store quickBuy token', e);
+        }
+
+        // Redirect to checkout. Checkout page will detect quickBuy and only use this item.
+        window.location.href = 'checkout.html';
+      });
+
+      // "Thêm vào giỏ hàng" (không chuyển hướng) - thêm số lượng vào giỏ và hiển thị xác nhận nhẹ
+      const addBtn = document.getElementById('addToCartBtn');
+      if (addBtn) {
+        addBtn.addEventListener('click', ()=>{
+          const qty = Math.max(1, parseInt(qtyInput.value||1));
+          const flavor = document.querySelector('.variant-btn.selected')?.textContent.trim();
+          // addToCart now accepts a qty parameter to add multiple units in one call
+          addToCart(p.id, flavor, qty);
+          // thêm deal nếu người dùng chọn và còn hàng (deal added as single unit)
+          const sel = document.querySelector('input[name="dealSelect"]:checked');
+          if (sel) {
+            const rid = parseInt(sel.value,10);
+            const chosen = (productList||[]).find(x=>x.id===rid);
+            if (chosen && chosen.stock !== false) addToCart(chosen.id);
+          }
+          // Cập nhật UI: chỉ cập nhật số lượng ở header, KHÔNG mở popup/ panel
+          try {
+            if (typeof updateCartUI === 'function') updateCartUI();
+          } catch (e) { /* ignore */ }
+
+          // Thông báo tiếng Việt cho khách
+          let note = `Đã thêm ${qty} x "${p.title}" vào giỏ hàng.`;
+          if (flavor) note += `\nMùi: ${flavor}`;
+          note += `\nMở giỏ hàng để kiểm tra và tiếp tục thanh toán.`;
+
+          if (typeof showToast === 'function') showToast(note);
+          else alert(note);
+        });
+      }
+
+      // "Thêm vào yêu thích" (nút trên trang chi tiết)
+      const addWishlistBtn = document.getElementById('addToWishlistBtn');
+      if (addWishlistBtn) {
+        addWishlistBtn.addEventListener('click', ()=>{
+          const flavor = document.querySelector('.variant-btn.selected')?.textContent.trim();
+          try {
+            if (typeof addToWishlist === 'function') {
+              addToWishlist(p.id, flavor);
+            } else {
+              // fallback: directly manage wishlist in localStorage (no blocking alerts)
+              let wishlist = [];
+              try { wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]'); } catch(e){ wishlist = []; }
+              const keyFlavor = (flavor || '').toString();
+              const exists = wishlist.find(item => item.id === p.id && (item.flavor || '') === keyFlavor);
+              if (!exists) {
+                const toStore = Object.assign({}, p);
+                toStore.flavor = keyFlavor || undefined;
+                wishlist.push(toStore);
+                try { localStorage.setItem('wishlist', JSON.stringify(wishlist)); } catch(e) {}
+              }
+              // Do not show blocking alerts here; `updateWishlistUI()` / header badge will reflect the change.
+            }
+
+            // visual feedback on the button
+            const icon = addWishlistBtn.querySelector('i');
+            if (icon) { icon.classList.remove('fa-regular'); icon.classList.add('fa-solid'); }
+            addWishlistBtn.style.color = '#ff6b35';
+            // ensure UI/count updated
+            if (typeof updateWishlistUI === 'function') updateWishlistUI();
+            // update badge directly; no popup should appear — header only
+            try { updateWishlistBadge(); } catch(e) { /* ignore */ }
+            try { pulseWishlistCount(); } catch(e) { /* ignore */ }
+          } catch (e) {
+            console.error('addToWishlist error', e);
+            alert('Không thể thêm vào yêu thích. Vui lòng thử lại sau.');
+          }
+        });
+      }
+
+      // deal selection: highlight selected row and (optionally) update displayed price
+      document.querySelectorAll('input[name="dealSelect"]').forEach(radio => {
+        radio.addEventListener('change', (e)=>{
+          // clear all selected visuals first
+          document.querySelectorAll('.deal-row').forEach(dr => dr.classList.remove('selected'));
+          // if this radio is now checked -> mark its row; otherwise clear note
+          if (radio.checked) {
+            const row = radio.closest('.deal-row'); if (row) row.classList.add('selected');
+            // update chosen deal note
+            const rid = parseInt(radio.value,10);
+            const chosen = (productList||[]).find(x=>x.id===rid);
+            const dealNote = document.querySelector('.pd-deal-note');
+            if (chosen && dealNote) dealNote.textContent = `Đã chọn: ${chosen.title} — ${formatPrice(chosen.price)}`;
+          } else {
+            // nothing selected
+            const dealNote = document.querySelector('.pd-deal-note');
+            if (dealNote) dealNote.textContent = '';
+          }
+        });
       });
 
       window.scrollTo({top:0, behavior:'smooth'});
+
+      // Promo: initialize countdown and FAQ toggles, and set video if product provides one
+      (function initPromoExtras(){
+        try {
+          // Countdown: 48 hours from first view per-session for this product
+          const cdEl = document.getElementById('promoCountdown');
+          if (cdEl) {
+            const key = 'promo_deadline_' + (p.id || 'global');
+            let deadline = sessionStorage.getItem(key);
+            if (!deadline) {
+              deadline = (Date.now() + 48 * 3600 * 1000).toString();
+              sessionStorage.setItem(key, deadline);
+            }
+            deadline = parseInt(deadline,10);
+            function tick(){
+              const rem = Math.max(0, deadline - Date.now());
+              const h = String(Math.floor(rem / 3600000)).padStart(2,'0');
+              const m = String(Math.floor((rem % 3600000) / 60000)).padStart(2,'0');
+              const s = String(Math.floor((rem % 60000) / 1000)).padStart(2,'0');
+              cdEl.textContent = h + ':' + m + ':' + s;
+              if (rem <= 0) clearInterval(tid);
+            }
+            tick();
+            const tid = setInterval(tick, 1000);
+          }
+
+          // Video: if product has `video` property (YouTube embed URL or src), set iframe
+          const iframe = document.getElementById('promoVideoIframe');
+          if (iframe) {
+            const src = p.video || p.videoUrl || p.video_src || '';
+            if (src) iframe.src = src;
+            else iframe.style.display = 'none';
+          }
+
+          // FAQ toggles
+          document.querySelectorAll('.promo-faq .faq-q').forEach(btn => {
+            btn.addEventListener('click', ()=>{
+              const open = btn.classList.toggle('open');
+              // close siblings
+              document.querySelectorAll('.promo-faq .faq-q').forEach(b=>{ if (b !== btn) b.classList.remove('open'); });
+              document.querySelectorAll('.promo-faq .faq-a').forEach(a=>{ a.style.display = 'none'; });
+              const a = btn.nextElementSibling; if (a) a.style.display = open ? 'block' : 'none';
+            });
+          });
+        } catch (e) { console.error('promo extras init', e); }
+      })();
+
+      // Wishlist: popup removed. Keep badge update + pulse helpers only.
+
+      // Briefly pulse the wishlist count in header to show the updated number
+      function pulseWishlistCount() {
+        const el = document.getElementById('wishlistCount');
+        if (!el) return;
+        el.classList.remove('badge-pulse');
+        // trigger reflow to restart animation
+        void el.offsetWidth;
+        el.classList.add('badge-pulse');
+        // remove class after animation completes
+        setTimeout(() => el.classList.remove('badge-pulse'), 800);
+      }
+
+      // Ensure the wishlist header badge shows the current count
+      function updateWishlistBadge() {
+        try {
+          let wishlist = [];
+          try { wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]'); } catch(e){ wishlist = []; }
+          const count = Array.isArray(wishlist) ? wishlist.length : 0;
+          const elById = document.getElementById('wishlistCount');
+          if (elById) { elById.textContent = count > 0 ? count : '0'; return; }
+          const btn = document.getElementById('wishlistBtn');
+          const span = btn?.querySelector('span');
+          if (span) span.textContent = count > 0 ? count : '0';
+        } catch (e) { console.error('updateWishlistBadge', e); }
+      }
     })();
   </script>
 </body>

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sản phẩm yêu thích | YOUNGKH WHEY</title>
+  <link rel="stylesheet" href="phonggym.css">
+  <link rel="stylesheet" href="chitietsp.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="yeuThich.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="left-block">
+        <a href="TrangChu.html" class="brand"><img src="/IMG/logo1.png" alt="YOUNGKH WHEY" /></a>
+      </div>
+      <div class="center-block">
+        <div class="search">
+          <input id="searchInput" type="search" placeholder="Tìm kiếm sản phẩm...">
+          <button id="searchBtn">Tìm Kiếm</button>
+        </div>
+      </div>
+      <div class="right-block">
+        <div id="cartBtn" class="cart icon-btn">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span id="cartCount">0</span>
+        </div>
+        <div id="wishlistBtn" class="cart icon-btn" style="margin-left: 16px;">
+          <i class="fa-solid fa-heart"></i>
+          <span id="wishlistCount">0</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Cart panel (shared) -->
+  <aside id="cartPanel" class="cart-panel hidden">
+    <div class="cart-head">
+      <h3>Giỏ hàng</h3>
+      <button id="closeCart" class="icon-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-foot">
+      <div>Tổng: <strong id="cartTotal">0₫</strong></div>
+      <button id="checkoutBtn" class="btn-primary">Thanh toán</button>
+    </div>
+  </aside>
+
+  <!-- Wishlist container -->
+  <div class="wishlist-container">
+
+    <!-- Header -->
+    <div class="wishlist-header">
+      <h1><i class="fas fa-heart"></i> Sản phẩm yêu thích</h1>
+      <p id="wishlistCount-text">Bạn chưa lưu sản phẩm nào</p>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="wishlist-toolbar">
+      <div class="left">
+        <label for="sortWishlist">Sắp xếp:</label>
+        <select id="sortWishlist">
+          <option value="recent">Mới lưu</option>
+          <option value="price-asc">Giá: thấp → cao</option>
+          <option value="price-desc">Giá: cao → thấp</option>
+        </select>
+      </div>
+      <div class="actions">
+        <button id="clearWishlistBtn" class="btn-clear">Xóa tất cả</button>
+      </div>
+    </div>
+
+    <!-- Wishlist Grid -->
+    <div id="wishlistGrid" class="wishlist-grid"></div>
+
+    <!-- Empty State -->
+    <div id="emptyState" class="wishlist-empty" style="display: none;">
+      <i class="fas fa-heart-broken"></i>
+      <h3>Chưa có sản phẩm yêu thích</h3>
+      <p>Hãy khám phá và lưu những sản phẩm bạn yêu thích nhất</p>
+      <a href="TrangChu.html">Tiếp tục mua sắm →</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+   <footer class="site-footer">
+    <div class="footer-top">
+      <div class="ft-icons">
+        <div class="ft-icon"><i class="fa-solid fa-truck-fast"></i>
+          <h5>HỖ TRỢ PHÍ SHIP</h5>
+          <p>100% Hỗ Trợ Toàn Quốc</p>
+        </div>
+        <div class="ft-icon"><i class="fa-solid fa-tag"></i>
+          <h5>GIÁ NIÊM YẾT</h5>
+          <p>100% Giá Niêm Yết</p>
+        </div>
+        <div class="ft-icon"><i class="fa-solid fa-headset"></i>
+          <h5>TRUNG TÂM CHĂM SÓC</h5>
+          <p>Hỗ Trợ và Tư Vấn 24/7</p>
+        </div>
+        <div class="ft-icon"><i class="fa-solid fa-rotate-left"></i>
+          <h5>CHÍNH SÁCH TRẢ HÀNG</h5>
+          <p>Đổi/Trả Hàng Miễn Phí</p>
+        </div>
+      </div>
+
+      <div class="footer-cols">
+        <div class="ft-col">
+          <h4>GIỚI THIỆU</h4>
+          <ul>
+            <li>Giới Thiệu Công Ty</li>
+            <li>Thông Tin Liên Hệ</li>
+            <li>Tin Tuyển Dụng</li>
+            <li>Kiểm Tra Đơn hàng</li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>TÍCH ĐIỂM</h4>
+          <ul>
+            <li>Cách Tích Điểm</li>
+            <li>Thành Viên VIP</li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>CHI NHÁNH 1</h4>
+          <p>Liên Hệ: 0903324511</p>
+          <p>123 Đường Mới, P.1, Q.1, TP.HCM</p>
+        </div>
+        <div class="ft-col">
+          <h4>CHI NHÁNH 2</h4>
+          <p>Liên Hệ: 0901326987</p>
+          <p>285/66 Cách Mạng Tháng Tám, P.12, Q.10, TP.HCM</p>
+        </div>
+        <div class="ft-col">
+          <h4>CHÍNH SÁCH MUA HÀNG</h4>
+          <ul>
+            <li>Chính sách bảo mật</li>
+            <li>Chính sách giao hàng</li>
+            <li>Chính sách đổi trả</li>
+            <li>Phản hồi chất lượng phục vụ</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-extras">                           
+        <div class="social">
+          <h5>THEO DÕI SHOP TẠI:</h5>
+          <a href="https://www.facebook.com/DNHuyHoang" class="social-fb"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/youngkh.04/" class="social-instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="tax">
+          <h5>MÃ SỐ THUẾ:</h5>
+          <div>3903327891</div>
+          <div style="margin-top:6px; font-weight:700">CÔNG TY TNHH YOUNGKH WHEY</div>
+          <div>321 Đường Phạm Văn Đồng P.Hạnh Thông Q.Gò Vấp TP.Hồ Chí Minh</div>
+        </div>
+        <div class="bct">
+          <h5>ĐÃ THÔNG BÁO</h5>
+          <img src="/IMG/bocongthuong.png" alt="Đã thông báo Bộ Công Thương" style="max-width:140px;">
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="footer-bottom">
+      <div>Bản quyền thuộc về @YOUNGKH WHEY  .</div>
+      <div class="payments">
+        <div>Những sản phẩm đăng trên website không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.</div>
+        <div style="margin-left:18px; display:inline-flex; gap:10px; align-items:center">
+          <i class="fab fa-cc-visa" title="Visa"></i>
+          <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+          <i class="fab fa-cc-paypal" title="PayPal"></i>
+        </div>
+      </div>
+    </div>
+    
+    
+  </footer>
+
+  <script src="phonggym.js"></script>
+  <script>
+    (function() {
+      // Load wishlist from localStorage
+      let wishlist = [];
+      try {
+        wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+      } catch (e) {
+        wishlist = [];
+      }
+
+      const wishlistGrid = document.getElementById('wishlistGrid');
+      const emptyState = document.getElementById('emptyState');
+      const wishlistCountText = document.getElementById('wishlistCount-text');
+      const wishlistBtn = document.getElementById('wishlistBtn');
+
+      function formatPrice(price) {
+        if (!price && price !== 0) return '0₫';
+        return (price).toLocaleString('vi-VN') + '₫';
+      }
+
+      // Cart helper
+      function getCart() {
+        try { return JSON.parse(localStorage.getItem('cart') || '[]'); } catch (e) { return []; }
+      }
+
+      function updateHeaderCartCount() {
+        try {
+          const cart = getCart();
+          const total = cart.reduce((s, i) => s + (i.qty || 0), 0);
+          const el = document.getElementById('cartCount');
+          if (el) el.textContent = total;
+        } catch (e) { /* ignore */ }
+      }
+
+      function updateWishlistCount() {
+        const count = wishlist.length;
+        const countElement = document.getElementById('wishlistCount');
+        if (countElement) {
+          countElement.textContent = count > 0 ? count : '0';
+        }
+      }
+
+      function removeFromWishlist(productId) {
+        // Normalize comparison to string so numeric vs string ids both match
+        const pid = String(productId);
+        wishlist = wishlist.filter(item => String(item.id) !== pid);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        renderWishlist();
+        updateWishlistCount();
+      }
+
+      // Local fallback for adding to cart if global API is not available.
+      function addToCartLocal(product) {
+        try {
+          let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+          const existingItem = cart.find(item => item.id === product.id && item.flavor === product.flavor);
+          if (existingItem) existingItem.qty = (existingItem.qty || 1) + 1;
+          else cart.push({ ...product, qty: 1 });
+          try { localStorage.setItem('cart', JSON.stringify(cart)); } catch(e) {}
+          // Update UI: call global update if available and header count
+          if (typeof updateCartUI !== 'undefined') updateCartUI();
+          try { updateHeaderCartCount(); } catch(e) {}
+        } catch (e) {
+          console.error('Error adding to cart (local):', e);
+        }
+      }
+
+      function renderWishlist() {
+        wishlistGrid.innerHTML = '';
+        
+        if (wishlist.length === 0) {
+          emptyState.style.display = 'block';
+          wishlistCountText.textContent = 'Bạn chưa lưu sản phẩm nào';
+          return;
+        }
+
+        emptyState.style.display = 'none';
+        wishlistCountText.textContent = `Bạn có ${wishlist.length} sản phẩm yêu thích`;
+
+          wishlist.forEach(product => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'wishlist-item';
+          itemDiv.setAttribute('data-wishlist-id', product.id);
+          // allow keyboard focus for accessibility
+          itemDiv.tabIndex = 0;
+          itemDiv.innerHTML = `
+            <div class="wishlist-item-image">
+              <div class="skeleton-img"></div>
+              <img data-src="${product.img}" alt="${product.title}" class="lazy" />
+              <div class="price-badge">${formatPrice(product.price)}</div>
+              <div class="wishlist-heart" onclick="removeProduct('${product.id}')" role="button" aria-label="Xóa sản phẩm khỏi yêu thích" title="Xóa">
+                <i class="fas fa-times"></i>
+              </div>
+            </div>
+            <div class="wishlist-item-content">
+              <div class="wishlist-item-name">${product.title}</div>
+              ${product.flavor ? `<div class="wishlist-item-flavor">Mùi: ${product.flavor}</div>` : ''}
+              <div class="wishlist-item-price">${formatPrice(product.price)}</div>
+              <div class="wishlist-item-actions">
+                  <button class="btn-add-cart" data-action="add" onclick="addProduct('${JSON.stringify(product).replace(/"/g, '&quot;')}')">
+                    <i class="fas fa-cart-plus"></i> Thêm giỏ
+                  </button>
+                  <button class="btn-add-cart" data-action="buy" style="background:#06a75f;margin-left:6px" onclick="buyProduct('${JSON.stringify(product).replace(/"/g, '&quot;')}')">
+                    <i class="fas fa-bolt"></i> Mua ngay
+                  </button>
+                  <button class="btn-view" onclick="viewProduct('${product.id}')">
+                    <i class="fas fa-eye"></i> Xem
+                  </button>
+              </div>
+            </div>
+          `;
+          wishlistGrid.appendChild(itemDiv);
+        });
+        // initialize lazy loader after rendering
+        initLazyImages();
+      }
+
+      // Make functions global
+      window.removeProduct = function(productId) {
+        try {
+          // find the DOM node for a nicer animated removal
+          const node = document.querySelector(`[data-wishlist-id="${productId}"]`);
+          if (node) {
+            // add removing class and wait for the CSS collapse animation
+            node.classList.add('removing');
+            // use a slightly longer timeout to match CSS transitions
+            setTimeout(() => {
+              removeFromWishlist(productId);
+            }, 340);
+            return;
+          }
+          // fallback
+          removeFromWishlist(productId);
+        } catch (e) {
+          console.error('removeProduct error', e);
+          removeFromWishlist(productId);
+        }
+      };
+
+      // Lazy-load images inside wishlist using IntersectionObserver
+      function initLazyImages() {
+        const lazyImages = Array.from(document.querySelectorAll('.lazy'));
+        if (!lazyImages.length) return;
+        if ('IntersectionObserver' in window) {
+          const io = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const img = entry.target;
+                const src = img.getAttribute('data-src');
+                if (src) {
+                  img.src = src;
+                  img.addEventListener('load', () => {
+                    img.classList.add('loaded');
+                    const sk = img.parentElement.querySelector('.skeleton-img');
+                    if (sk) sk.remove();
+                  }, { once: true });
+                }
+                obs.unobserve(img);
+              }
+            });
+          }, { rootMargin: '100px 0px' });
+          lazyImages.forEach(img => io.observe(img));
+        } else {
+          // fallback: load all images immediately
+          lazyImages.forEach(img => {
+            const src = img.getAttribute('data-src');
+            if (src) { img.src = src; img.classList.add('loaded'); const sk = img.parentElement.querySelector('.skeleton-img'); if (sk) sk.remove(); }
+          });
+        }
+      }
+
+      // Clear all wishlist (UI + storage)
+      document.getElementById('clearWishlistBtn')?.addEventListener('click', ()=>{
+        if (!confirm('Bạn có chắc muốn xóa tất cả sản phẩm yêu thích?')) return;
+        wishlist = [];
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        renderWishlist();
+        updateWishlistCount();
+      });
+
+      window.addProduct = function(productJson) {
+        const product = JSON.parse(productJson.replace(/&quot;/g, '"'));
+        try {
+          // Prefer global addToCart(id, flavor) from phonggym.js which maintains the shared cart array.
+          if (typeof window.addToCart === 'function' && window.addToCart.length >= 1) {
+            // call global API with id and flavor
+            window.addToCart(product.id, product.flavor);
+          } else {
+            // fallback to local implementation
+            addToCartLocal(product);
+          }
+          // If the site has a cart panel, open it so the user sees the added product
+          if (typeof cartPanel !== 'undefined' && cartPanel) cartPanel.classList.remove('hidden');
+          if (typeof updateCartUI !== 'undefined') updateCartUI();
+          try { updateHeaderCartCount(); } catch(e) {}
+        } catch (e) {
+          console.error('addProduct error', e);
+        }
+      };
+
+      window.buyProduct = function(productJson) {
+        try {
+          // Quick-buy: do NOT add to cart. Store product in sessionStorage and go to checkout.
+          // We store a small JSON with qty guaranteed.
+          const prod = JSON.parse(productJson.replace(/&quot;/g, '"'));
+          const qb = { ...prod, qty: prod.qty || 1 };
+          try { sessionStorage.setItem('quickBuy', JSON.stringify(qb)); } catch(e) { console.warn('quickBuy store failed', e); }
+          window.location.href = 'checkout.html';
+        } catch (e) {
+          console.error('buyProduct', e);
+          // Fallback: navigate to checkout
+          window.location.href = 'checkout.html';
+        }
+      };
+
+      window.viewProduct = function(productId) {
+        // Navigate to product detail page
+        window.location.href = `product-detail.html?id=${productId}`;
+      };
+
+      // Initial render
+      renderWishlist();
+      updateWishlistCount();
+      // ensure header cart count shows current cart total on page load
+      try { updateHeaderCartCount(); } catch(e) {}
+
+      // Update wishlist and header/cart when storage changes (other tabs/pages)
+      window.addEventListener('storage', () => {
+        wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+        renderWishlist();
+        updateWishlistCount();
+        try { updateHeaderCartCount(); } catch(e) {}
+        if (typeof updateCartUI !== 'undefined') updateCartUI();
+      });
+
+      // Also listen for in-page wishlist changes dispatched by the global script
+      window.addEventListener('wishlistChanged', () => {
+        try {
+          wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+          renderWishlist();
+          updateWishlistCount();
+          try { updateHeaderCartCount(); } catch(e) {}
+          if (typeof updateCartUI !== 'undefined') updateCartUI();
+        } catch (e) { console.error('wishlistChanged handler error', e); }
+      });
+    })();
+  </script>
+</body>
+</html>

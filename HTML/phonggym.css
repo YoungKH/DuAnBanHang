@@ -12,6 +12,7 @@ html, body {
   font-family: "Inter", "Segoe UI", Arial, sans-serif;
   color: #1e293b;
   background: #f3f6f7;
+  
   scroll-behavior: smooth;
 }
 
@@ -29,6 +30,234 @@ a {
 ul {
   list-style: none;
 }
+
+/* =====================================================
+   PRODUCT DETAIL PAGE STYLES
+   Matches the requested two-column layout: large gallery left + info right
+  ===================================================== */
+.product-detail {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  background: #ffffff;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 18px 48px rgba(2,6,23,0.06);
+}
+.pd-gallery {
+  flex: 1 1 560px;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pd-mainimg {
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 32px rgba(2,6,23,0.04);
+  position: relative;
+}
+.pd-mainimg img {
+  width: 100%;
+  height: 420px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.pd-thumbs {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+}
+.pd-thumbs li {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  box-shadow: 0 8px 22px rgba(2,6,23,0.03);
+}
+.pd-thumbs li.active {
+  border-color: #2743ff;
+  box-shadow: 0 14px 40px rgba(39,67,255,0.10);
+  transform: translateY(-4px);
+}
+.pd-thumbs img { width:100%; height:100%; object-fit:cover; }
+
+.pd-info {
+  flex: 1 1 420px;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pd-supplier, .pd-views { color:#64748b; font-size:13px }
+.pd-title { font-size:24px; font-weight:900; color:#0b1220; line-height:1.12 }
+.pd-price-row { display:flex; gap:14px; align-items:baseline }
+.pd-price-row .old-price { font-size:16px; color:#9ca3af; text-decoration:line-through }
+.pd-price-row .price { font-size:30px; color:#2743ff; font-weight:900 }
+.pd-discount { color:#059669; font-weight:800 }
+
+.pd-deals { background:#fff; border:1px solid #eef3f5; padding:12px; border-radius:10px; box-shadow:0 8px 26px rgba(2,6,23,0.03) }
+.pd-deals h4 { margin:0 0 8px; font-size:15px }
+.deal-row { display:flex; gap:12px; align-items:center; padding:10px 6px; border-bottom:1px dashed #f3f6f8 }
+.deal-row:last-child { border-bottom:0 }
+.deal-row img { width:72px; height:72px; object-fit:cover; border-radius:8px }
+.deal-info .deal-title { font-weight:800; color:#111 }
+.deal-price { color:#ff3b30; font-weight:900 }
+
+.deal-row.selected { background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(245,248,255,0.7)); box-shadow: 0 8px 20px rgba(39,67,255,0.04); border-radius:8px; transform: translateY(-2px); }
+.deal-label input[type="radio"] { accent-color: #2743ff }
+.pd-deal-cta { display:block; width:100%; margin:12px 0 0; padding:10px; background:#f3f6f7; border-radius:8px; text-align:center; color:#64748b; font-weight:700 }
+.pd-deal-note { color:#475569; font-weight:700; margin-top:6px; font-size:14px }
+
+.pd-purchase { display:flex; gap:12px; align-items:center; margin-top:6px }
+.qty-control { display:flex; align-items:center; gap:8px; background:#fff; border-radius:999px; padding:6px; border:1px solid #eef3f5 }
+.qty-btn { background:#f3f6ff; border:0; padding:8px 12px; border-radius:999px; cursor:pointer; font-weight:800 }
+#qtyInput { width:56px; text-align:center; border:0; font-weight:800; font-size:16px }
+
+.btn-order { background: linear-gradient(90deg,#2743ff,#5563ff); color:#fff; border:0; padding:12px 28px; border-radius:999px; font-weight:900; font-size:16px; cursor:pointer; box-shadow:0 16px 46px rgba(39,67,255,0.16) }
+.btn-order:active { transform: translateY(1px) }
+.pd-extra { margin-top:8px }
+
+@media (max-width: 900px) {
+  .product-detail { flex-direction: column; padding:16px }
+  .pd-mainimg img { height:320px }
+  .pd-gallery { max-width:100% }
+  .pd-info { min-width: auto }
+  .pd-thumbs { overflow-x:auto }
+}
+
+/* Additional refinements to match the provided product detail layout */
+.product-detail {
+  max-width: 1100px;
+  margin: 28px auto;
+  padding: 28px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #eef3f5;
+}
+.pd-mainimg img { height: 560px; }
+.pd-thumbs li { width: 80px; height: 80px; border-radius: 6px }
+.pd-thumbs li.active { border-width: 3px }
+
+.pd-info { padding-top: 6px }
+.pd-deals { margin-top: 6px }
+.deal-row { align-items: flex-start }
+.deal-info { flex: 1 }
+.deal-price { margin-left: 12px; white-space:nowrap }
+.deal-row .old-price-small { color:#9ca3af; margin-left:8px; font-size:12px }
+
+.pd-purchase { margin-top: 18px; align-items: center; display:flex; justify-content:space-between; gap:16px }
+.qty-control { padding:6px 10px; background:#fff }
+.qty-btn { padding:8px 12px }
+.btn-order { min-width: 260px; padding:14px 36px; border-radius:999px; flex:0 0 56% }
+
+/* ensure the button sits to the right of the qty control */
+.pd-purchase .qty-control { order: 1 }
+.pd-purchase .btn-order { order: 2 }
+
+/* small helper for the grey 'receive discount' bar seen in the screenshot */
+.pd-deal-cta { display:block; width:100%; margin:10px 0; padding:10px; background:#f3f6f7; border-radius:8px; text-align:center; color:#64748b; font-weight:700 }
+
+@media (max-width: 700px) {
+  .pd-mainimg img { height: 360px }
+  .btn-order { width:100%; padding:12px 18px }
+  .product-detail { padding:14px }
+}
+
+/* left-side small vertical tag beside gallery */
+.pd-gallery { position: relative }
+.side-tag {
+  position: absolute;
+  left: -70px;
+  top: 40%;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  background: #fff;
+  border: 1px solid #eef3f5;
+  padding: 8px 10px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.04);
+  color: #111827;
+  font-weight:800;
+  font-size:13px;
+}
+
+/* thumbnail small thumb below main gallery aligned left */
+.pd-thumbs { margin-top: 14px; }
+.pd-thumbs li { transition: transform 140ms ease, box-shadow 140ms ease }
+.pd-thumbs li:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(2,6,23,0.06) }
+
+/* tighten the centered card look: inner content spacing */
+.product-detail { padding: 28px 32px }
+
+
+/* =====================================================
+   PRODUCT CARDS & BADGES
+   Make discount/gift badges more colorful and prominent
+  ===================================================== */
+.card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(2,6,23,0.04);
+  border: 1px solid #eef3f5;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(2,6,23,0.06); }
+.card-media { position: relative; padding: 22px; display:flex; align-items:center; justify-content:center; background: #fafcfe; }
+.card-media img { max-height: 160px; object-fit: contain; }
+.card-body { padding: 14px 18px; }
+.card .title { font-weight:800; color:#0b1220; margin-bottom:6px; font-size:15px }
+.card .meta { color:#64748b; font-size:13px; margin-bottom:8px }
+.card .price-row { display:flex; gap:8px; align-items:baseline }
+.card .old-price { color:#9ca3af; text-decoration:line-through; font-size:13px }
+.card .price { color:#ef4444; font-weight:900; font-size:16px }
+
+/* Badges: general style */
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-weight:800;
+  font-size:13px;
+  color: #fff;
+  line-height:1;
+  box-shadow: 0 8px 22px rgba(2,6,23,0.12);
+  border: 1px solid rgba(255,255,255,0.12);
+  transform: translateZ(0);
+  background: linear-gradient(135deg,#ff6b6b,#ff8a00);
+}
+
+/* Discount badge (reds/oranges) */
+.badge-discount { background: linear-gradient(135deg,#ff6b6b,#ff8a00); }
+
+/* Gift / promo badge (greens/purples) */
+.badge-gift { background: linear-gradient(135deg,#10b981,#06b6d4); }
+
+/* Small adjustment for very long badge text */
+.badge { white-space: nowrap; max-width: 110px; overflow: hidden; text-overflow: ellipsis }
+
+@media (max-width:600px) {
+  .card-media img { max-height: 120px }
+  .badge { top: 8px; left: 8px; padding:5px 8px; font-size:12px }
+}
+
 
 /* =====================================================
    TOP BAR
@@ -53,11 +282,11 @@ ul {
 ===================================================== */
 .site-header {
   background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: none;
   position: sticky;
   top: 0;
   z-index: 60;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  box-shadow: none;
 }
 
 .header-inner {
@@ -170,6 +399,32 @@ ul {
   cursor: pointer;
 }
 
+/* Mini cart popup (used on pages without full cart panel) */
+.mini-cart {
+  position: fixed;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(2,6,23,0.12);
+  padding: 12px 14px;
+  z-index: 9999;
+  min-width: 220px;
+  max-width: 360px;
+  font-family: inherit;
+  color: #0b1220;
+  border: 1px solid #eef3f5;
+}
+.mini-cart .mc-header {
+  display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #f3f6f7
+}
+.mini-cart .mc-title { font-weight:800 }
+.mini-cart .mc-body { padding:10px 0; color:#374151 }
+.mini-cart .mc-body .mc-row { display:flex;justify-content:space-between;align-items:center;padding:6px 0 }
+.mini-cart .mc-footer { display:flex;gap:8px;justify-content:flex-end;margin-top:6px }
+.mini-cart .btn { padding:8px 12px;border-radius:8px;border:0;cursor:pointer }
+.mini-cart .btn-primary { background: linear-gradient(90deg,#2743ff,#5563ff); color:#fff }
+.mini-cart .btn-ghost { background:#fff;border:1px solid #e6eef8;color:#0b1220 }
+
+
 .suggestions li:hover { background: #f3f6ff; }
 
 .suggestions li img {
@@ -203,6 +458,31 @@ ul {
   gap: 12px;
 }
 
+/* Header: swap cart and wishlist order and improve wishlist appearance */
+/* Place cart before wishlist visually (keeps HTML order intact) */
+#cartBtn { order: 2; }
+#wishlistBtn { order: 1; }
+
+/* Make wishlist button more prominent and sporty */
+#wishlistBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  transition: all 160ms ease;
+  background: transparent;
+  color: #0b1220;
+}
+#wishlistBtn i { color: #ff6b35; font-size: 1.05rem; }
+#cartBtn i, #wishlistBtn i { font-size: 1.05rem; }
+#wishlistBtn:hover {
+  background: linear-gradient(90deg, rgba(255,77,0,0.08), rgba(214,58,0,0.04));
+  color: #ff4d00;
+}
+
+
 .icon-btn {
   background: transparent;
   border: 0;
@@ -217,6 +497,32 @@ ul {
   background: #f3f6ff;
   color: #2743ff;
 }
+
+/* Account modal styles */
+.acct-modal-backdrop { position: fixed; inset:0; background: rgba(2,6,23,0.45); display:none; align-items:center; justify-content:center; z-index:200 }
+.acct-modal-backdrop.open { display:flex }
+.acct-modal { width: 520px; max-width: calc(100% - 32px); background:#fff; border-radius:10px; padding:18px; box-shadow:0 28px 80px rgba(2,6,23,0.28); position:relative }
+.acct-modal .close-x { position:absolute; right:12px; top:10px; background:transparent; border:0; font-size:18px; cursor:pointer; color:#6b7280 }
+.acct-modal h3 { margin:0 0 8px; font-size:16px; text-align:center }
+.acct-tabs { display:flex; gap:12px; margin:10px 0 16px; justify-content:center; border-bottom:1px solid #eef3f5 }
+.acct-tabs button { padding:10px 18px; border:0; background:transparent; cursor:pointer; color:#556 ; font-weight:800; font-size:13px }
+.acct-tabs button.active { color:#2743ff; border-bottom:3px solid #2743ff; background:transparent }
+.acct-form { display:flex; flex-direction:column; gap:12px }
+.acct-form input { padding:12px 14px; border-radius:32px; border:1px solid #e6eefc; background:#fbfdff }
+.acct-form .vis-label { font-size:13px; color:#475569; margin:0 4px 4px 4px }
+/* hide register-only fields by default to avoid flicker before JS runs */
+.acct-form .reg-only { display:none }
+.acct-form input::placeholder { color:#9aa8ad }
+.acct-row { display:flex; justify-content:space-between; align-items:center; gap:8px }
+.acct-remember { display:flex; align-items:center; gap:8px; color:#6b7280 }
+.acct-remember input { width:16px; height:16px }
+.acct-forgot { color:#2743ff; cursor:pointer; font-size:14px }
+.acct-actions { display:flex; gap:8px; justify-content:center; margin-top:8px }
+.acct-actions .btn-primary { width:100%; padding:14px 18px; border-radius:28px; font-weight:900; background: linear-gradient(90deg,#2743ff,#5563ff); border:0 }
+.acct-footer { margin-top:10px; font-size:12px; color:#94a3b8; text-align:center }
+.acct-logged { display:flex; gap:12px; align-items:center; justify-content:space-between }
+.acct-logged .who { font-weight:800 }
+.acct-logout { background:#fff; border:1px solid #ff3b30; color:#ff3b30; padding:8px 12px; border-radius:8px; cursor:pointer }
 
 .cart {
   position: relative;
@@ -497,49 +803,6 @@ main.container { display: grid; grid-template-columns: 260px 1fr; gap: 26px; ali
 .promo:hover {
   transform: translateY(-3px);
 }
-
-/* =====================
-   STUDENT DISCOUNT PROMO (Homepage)
-   ===================== */
-.student-promo {
-  max-width: 1200px;
-  margin: 18px auto;
-  padding: 0 18px;
-}
-.student-card {
-  background: linear-gradient(90deg,#fff 0%,#f8fbff 100%);
-  border-radius: 12px;
-  padding: 16px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  box-shadow: 0 8px 26px rgba(2,6,23,0.04);
-  border: 1px solid #eef3f5;
-}
-.student-card .left {
-  display:flex;align-items:center;gap:12px;
-}
-.student-card .icon {
-  width:72px;height:72px;border-radius:10px;background:linear-gradient(135deg,#7c6cff,#2743ff);display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;font-weight:800;box-shadow:0 8px 22px rgba(39,67,255,0.12);
-}
-.student-card .desc h3{margin:0;font-size:18px;color:#0b1220}
-.student-card .desc p{margin:0;color:#475569}
-.student-card .actions {display:flex;gap:8px;align-items:center}
-.student-card .btn-claim {background:#2743ff;color:#fff;border-radius:10px;padding:10px 14px;border:0;cursor:pointer;font-weight:700}
-.student-card .btn-claim[disabled]{opacity:0.6;cursor:not-allowed}
-
-/* Modal for promo code */
-.modal {
-  position: fixed;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0;transition:opacity 220ms ease;z-index:10000
-}
-.modal.open{pointer-events:auto;opacity:1}
-.modal-backdrop{position:absolute;inset:0;background:rgba(2,6,23,0.55)}
-.modal-content{position:relative;background:#fff;border-radius:12px;padding:20px;max-width:420px;width:92%;box-shadow:0 18px 60px rgba(2,6,23,0.18);z-index:1}
-.modal-content h3{margin:0 0 8px}
-.modal-content p{color:#475569;margin:0 0 12px}
-.modal-code{display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:8px;background:#f3f6ff;border:1px dashed #dfe8ff;font-weight:800}
-.modal-close{position:absolute;top:10px;right:10px;border:0;background:transparent;font-size:18px;cursor:pointer;color:#64748b}
 
 
 /* =====================================================
@@ -824,244 +1087,213 @@ main.container { display: grid; grid-template-columns: 260px 1fr; gap: 26px; ali
   position: fixed;
   right: 18px;
   top: 90px;
-  width: 360px;
+  width: 420px;
+  max-width: calc(100% - 36px);
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.18);
-  z-index: 120;
+  box-shadow: 0 18px 48px rgba(2,6,23,0.12);
+  z-index: 140;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
+.cart-panel.hidden { display: none }
+.cart-head { padding:12px 14px; border-bottom:1px solid #f1f3f5; display:flex; align-items:center; justify-content:space-between }
+.cart-head h3 { margin:0; font-size:16px }
+.cart-items { padding:8px 10px; max-height:56vh; overflow:auto }
+.cart-item { display:flex; gap:12px; align-items:center; padding:10px 6px; border-bottom:1px solid #fafafa }
+.cart-item img { width:72px; height:72px; object-fit:cover; border-radius:6px; flex:0 0 72px }
+.cart-item .cart-meta { flex:1; min-width:0 }
+.cart-item .cart-meta strong { display:block; font-size:14px; margin-bottom:4px }
+.cart-item .cart-meta .flavor { color:#6b7280; font-size:13px; margin-bottom:6px }
+.cart-item .cart-meta .price { color:#111827; font-weight:700 }
+.cart-item .cart-actions { display:flex; flex-direction:row; gap:8px; align-items:center }
+.cart-item .btn-outline { padding:6px 8px; font-size:13px; min-width:36px; height:32px; display:inline-flex; align-items:center; justify-content:center }
+.cart-item .btn-outline[disabled] { opacity:0.6 }
+.cart-item .btn-outline.remove { color:#ff3b30; border-color: rgba(255,59,48,0.12) }
+.cart-foot { padding:12px 14px; border-top:1px solid #f1f3f5; display:flex; gap:12px; align-items:center; justify-content:space-between }
+.cart-foot .btn-primary { padding:10px 14px }
 
-.cart-panel.hidden {
-  display: none;
+/* Ensure cart rows are visually consistent: fixed thumbnail, truncated title, aligned checkbox */
+.cart-item { min-height:84px }
+.cart-item .cart-meta strong {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+.cart-item input.cart-select { flex: 0 0 20px; width:20px; height:20px; margin-top:6px }
+.cart-item > div { width:100% }
 
-.cart-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px;
-  border-bottom: 1px solid #eee;
+/* make cart look good on narrow screens */
+@media (max-width:760px) {
+  .cart-panel { right:12px; left:12px; width:auto; top:70px }
+  .cart-item { gap:10px }
+  .cart-item img { width:56px; height:56px; flex:0 0 56px }
+  .cart-item .btn-outline { min-width:34px; height:30px }
 }
-
-.cart-items {
-  padding: 10px;
-  max-height: 56vh;
-  overflow: auto;
-}
-
-.cart-item {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px dashed #f3f3f3;
-}
-
-.cart-item img {
-  width: 64px;
-  height: 64px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.cart-foot {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px;
-  border-top: 1px solid #eee;
-}
-
 /* =====================================================
    FOOTER
 ===================================================== */
 .site-footer {
-  background: #0b1220;
-  color: #cbd5e1;
-  padding: 50px 18px 30px;
-  margin-top: 60px;
+  background: #ffffff;
+  color: #374151;
+  padding: 48px 18px 28px;
+  margin-top: 40px;
+  border-top: 1px solid #eef2f6;
 }
 
 .footer-top {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  /* keep simple grid; internal blocks handle column layout */
   grid-template-columns: 1fr;
-  gap: 30px;
+  gap: 26px;
 }
 
-.ft-col h4 {
-  color: #fff;
-  margin-bottom: 12px;
-  font-size: 15px;
-  text-transform: uppercase;
-}
-
-.ft-col ul li {
-  color: #cbd5e1;
-  margin-bottom: 8px;
-  transition: color 0.3s ease;
-}
-
-.ft-col ul li:hover {
-  color: #fff;
-}
-
-.social {
-  display: flex;
-  gap: 10px;
-  margin-top: 8px;
-}
-
-/* make ft-icons row span full width and keep compact */
 .ft-icons {
   grid-column: 1 / -1;
   display: flex;
-  gap: 18px;
+  gap: 36px;
   align-items: center;
   justify-content: space-between;
 }
+.ft-icon { text-align: center; color: #374151 }
+.ft-icon i { display:block; font-size:26px; color:#3b82f6; margin-bottom:8px }
+.ft-icon h5 { margin:0; font-size:13px; color:#111827; font-weight:700 }
+.ft-icon p { margin:6px 0 0; color:#6b7280; font-size:13px }
 
 .footer-cols {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 columns on desktop */
-  gap: 18px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 22px;
 }
 
-.footer-extras {
-  grid-column: 1 / -1;
-  display: flex;
-  justify-content: space-between;
-  gap: 18px;
-  align-items: center;
+
+.ft-col h4 { color:#111827; margin-bottom:10px; font-size:14px }
+.ft-col ul { list-style: none; padding-left: 0; margin:0 }
+.ft-col ul li { color:#475569; margin-bottom:8px }
+
+.footer-extras { grid-column: 1 / -1; display:flex; justify-content:space-between; align-items:center; gap:18px }
+.social { display:flex; gap:10px; align-items:center }
+.social a { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; background:#eef2ff; color:#1e40af; text-decoration:none }
+.social a.social-fb { background:#3b82f6; color:#fff }
+.social a.social-instagram { background: linear-gradient(45deg,#405de6,#f56040); color:#fff }
+
+.tax { color:#475569 }
+.bct img { max-width:140px }
+
+.footer-bottom { max-width:1200px; margin:28px auto 0; display:flex; justify-content:space-between; align-items:center; color:#6b7280; border-top:1px solid #eef2f6; padding-top:16px; font-size:13px }
+.footer-bottom .payments { display:flex; gap:10px; align-items:center }
+.footer-bottom .payments img { height:24px }
+
+@media (max-width:1000px) {
+  .footer-cols { grid-template-columns: repeat(3,1fr) }
 }
 
-.social a {
-  color: #cbd5e1;
-  font-size: 18px;
-  transition: color 0.3s ease;
+@media (max-width:600px) {
+  .footer-top { text-align:center }
+  .ft-icons { justify-content:center }
+  .footer-cols { grid-template-columns: 1fr }
+  .footer-extras { justify-content:center }
+  .footer-bottom { flex-direction:column; gap:10px }
 }
 
-.social a:hover {
-  color: #fff;
-}
+        /* =====================================================
+           BUTTONS (Bạn đã cung cấp)
+        ===================================================== */
+        .btn-primary {
+            background: #ff3b30;
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none; /* Dành cho thẻ <a> */
+            display: inline-block; /* Dành cho thẻ <a> */
+        }
 
-.footer-bottom {
-  max-width: 1200px;
-  margin: 28px auto 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #97a3b9;
-  border-top: 1px solid #1e293b;
-  padding-top: 16px;
-  font-size: 13px;
-}
+        .btn-primary:hover {
+            background: #e52b23;
+            transform: scale(1.03);
+        }
 
-/* =====================================================
-   BUTTONS
-===================================================== */
-.btn-primary {
-  background: #ff3b30;
-  color: #fff;
-  padding: 10px 16px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
+        .btn-outline {
+            border: 1px solid #aaa;
+            background: white;
+            color: #333;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-.btn-primary:hover {
-  background: #e52b23;
-  transform: scale(1.03);
-}
+        .btn-outline:hover {
+            background: #f0f0f0;
+        }
 
-.btn-outline {
-  border: 1px solid #aaa;
-  background: white;
-  color: #333;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
-}
+        /* =====================================================
+           RESPONSIVE (Đã gom lại)
+        ===================================================== */
+        
+        /* Tablet */
+        @media (max-width: 1000px) {
+            .footer-cols {
+                grid-template-columns: repeat(3, 1fr); /* 3 cột */
+            }
 
-.btn-outline:hover {
-  background: #f0f0f0;
-}
+            .brand img {
+                height: 64px; /* Kích thước logo trên tablet */
+            }
+            
+            /* Các quy tắc CSS khác không liên quan đến footer
+               .container { flex-direction: column; }
+               .sidebar { order: 2; width: 100%; }
+               ...
+            */
+        }
 
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-@media (max-width: 1000px) {
-  .container {
-    flex-direction: column;
-  }
+        /* Mobile */
+        @media (max-width: 600px) {
+            .footer-top {
+                text-align: center; /* Căn giữa trên mobile */
+            }
 
-  .sidebar {
-    order: 2;
-    width: 100%;
-  }
+            .ft-icons {
+                justify-content: center; /* Căn giữa logo và icons */
+            }
 
-  .hero {
-    flex-direction: column;
-  }
+            .footer-cols {
+                grid-template-columns: 1fr; /* 1 cột */
+                gap: 30px; /* Tăng khoảng cách giữa các cột khi xếp chồng */
+            }
 
-  .hero-right {
-    max-width: 100%;
-    width: 100%;
-  }
+            .footer-extras {
+                justify-content: center; /* Căn giữa social và language */
+            }
 
-  .center-block {
-    display: none;
-  }
+            .social {
+                justify-content: center; /* Căn giữa các icon social */
+            }
 
-  .catalog-btn {
-    display: block;
-  }
-
-  .footer-top {
-    grid-template-columns: 1fr;
-  }
-  .footer-cols { grid-column: 1 / -1; grid-template-columns: repeat(3, 1fr); }
-  .footer-extras { grid-column: 1 / -1; }
-}
-
-/* Responsive overrides for logo size */
-@media (max-width: 1000px) {
-  .brand img {
-    height: 64px;
-  }
-}
-
-@media (max-width: 600px) {
-  .brand img {
-    height: 48px;
-  }
-}
-
-@media (max-width: 600px) {
-  .promo {
-    flex: 1 1 100%;
-  }
-
-  .footer-top {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .footer-cols { grid-template-columns: 1fr; }
-
-  .footer-bottom {
-    flex-direction: column;
-    gap: 8px;
-  }
-}
+            .footer-bottom {
+                flex-direction: column; /* Xếp chồng các mục */
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .brand img {
+                 height: 48px; /* Kích thước logo trên mobile */
+            }
+            
+            /* Các quy tắc CSS khác không liên quan đến footer
+               .promo { flex: 1 1 100%; }
+            */
+        }
 
 /* =====================================================
    CATEGORY PANEL (floating menu like the screenshot)
@@ -1417,4 +1649,220 @@ main.container { display: grid; grid-template-columns: 260px 1fr; gap: 26px; ali
 .pd-mainimg { height:360px }
 .pd-thumbs li { width:60px; height:60px }
 }
+/* === CODE GIỎ HÀNG MỚI (Dán vào cuối phonggym.css) === */
 
+/* Lớp phủ mờ nền */
+.cart-backdrop {
+  position: fixed;
+  inset: 0; /* top: 0; left: 0; right: 0; bottom: 0; */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 140;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none; /* Bỏ qua click khi bị ẩn */
+}
+.cart-backdrop:not(.hidden) {
+  opacity: 1;
+  pointer-events: auto; /* Cho phép click khi hiện */
+}
+
+/* Bảng trượt ra */
+.cart-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 420px;
+  max-width: 100%;
+  height: 100vh; /* Cao 100% màn hình */
+  background: #ffffff;
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%); /* Ẩn đi bằng cách đẩy sang phải */
+  transition: transform 0.3s ease-in-out;
+}
+.cart-panel:not(.hidden) {
+  transform: translateX(0); /* Đưa về vị trí 0 để hiện ra */
+}
+
+/* 1. Đầu giỏ hàng */
+.cart-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  flex-shrink: 0; /* Không bị co lại */
+}
+.cart-head h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+  text-transform: uppercase; /* VIẾT HOA */
+}
+.cart-close-btn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #aaa;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+.cart-close-btn:hover {
+  color: #111;
+}
+
+/* 2. Thân giỏ hàng (chứa sản phẩm) */
+.cart-items {
+  padding: 16px; /* Ít đệm hơn một chút */
+  overflow-y: auto; /* Cho phép cuộn khi nhiều đồ */
+  flex-grow: 1; /* Tự động co giãn lấp đầy */
+  background-color: #f7f7f7; /* Nền hơi xám cho đẹp */
+}
+
+/* 3. Chân giỏ hàng (tổng tiền, thanh toán) */
+.cart-foot {
+  padding: 20px;
+  border-top: 1px solid #f0f0f0;
+  background: #fff;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cart-foot.hidden {
+  display: none; /* Ẩn đi khi không có sản phẩm */
+}
+.cart-foot .total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+}
+.cart-foot .total-row strong {
+  color: #333;
+  font-weight: 700;
+}
+.cart-foot .total-row #cartTotal {
+  font-size: 18px;
+  font-weight: 700;
+  color: #e53935; /* Màu đỏ */
+}
+/* Nút Thanh Toán */
+.cart-foot #checkoutBtn {
+  width: 100%;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  background-color: #3f51b5; /* Màu xanh tím giống nút trong ảnh */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.cart-foot #checkoutBtn:hover {
+  background-color: #303f9f;
+}
+
+
+/* 4. Style cho giỏ hàng rỗng (GIỐNG HỆT ẢNH) */
+.cart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+  height: 100%;
+}
+.cart-empty .empty-icon {
+  /* Dùng FontAwesome icon (bạn đã link FontAwesome rồi) */
+  font-family: "Font Awesome 6 Free"; 
+  font-weight: 300; /* Dùng loại 'regular' (mỏng) */
+  font-size: 80px;
+  color: #e0e0e0;
+}
+/* Mã unicode cho icon 'box-open' */
+.cart-empty .empty-icon::before {
+  content: "\f49e"; 
+}
+.cart-empty .empty-text h4 {
+  font-size: 16px;
+  color: #555;
+  margin-top: 20px;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+/* Nút Quay Lại Cửa Hàng */
+.cart-empty .empty-btn {
+  background-color: #3f51b5; /* Màu xanh tím giống ảnh */
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+.cart-empty .empty-btn:hover {
+  background-color: #303f9f;
+}
+
+/* 5. Style cho từng sản phẩm trong giỏ */
+.cart-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: #fff;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.cart-item img {
+  width: 72px; height: 72px; object-fit: cover; border-radius: 6px; flex: 0 0 72px;
+}
+.cart-item .cart-meta {
+  flex: 1; min-width: 0;
+}
+.cart-item .cart-meta strong {
+  display: block; font-size: 14px; margin-bottom: 4px; color: #111;
+  /* Chống tràn chữ */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cart-item .cart-meta .flavor {
+  color: #6b7280; font-size: 13px; margin-bottom: 6px;
+}
+.cart-item .cart-meta .price {
+  color: #111827; font-weight: 700;
+}
+.cart-item .cart-actions {
+  display: flex; flex-direction: row; gap: 8px; align-items: center;
+}
+.cart-item .qty-btn {
+  width: 30px; height: 30px; padding: 0; font-size: 16px;
+  border: 1px solid #ddd; background: #fff; cursor: pointer; border-radius: 4px;
+}
+.cart-item .qty-btn[disabled] {
+  opacity: 0.5; cursor: not-allowed;
+}
+.cart-item .qty-text {
+  font-weight: 700; min-width: 18px; text-align: center;
+}
+.cart-item .remove {
+  color: #ff3b30; border-color: transparent; background: transparent;
+  width: 30px; height: 30px; padding: 0; font-size: 14px; cursor: pointer;
+}
+.cart-item .remove:hover {
+  background: #fff8f8;
+  border-radius: 4px;
+}
+/* === HẾT CODE CSS === */
