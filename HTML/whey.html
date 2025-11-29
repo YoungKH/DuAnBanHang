@@ -20,7 +20,7 @@
           <a href="TrangChu.html" class="brand">
             <img src="/IMG/logo1.png" alt="logo" />
           </a>
-          <div class="catalog-btn"><i class="fa fa-bars"></i> Danh Mục Sản Phẩm</div>
+          <div class="catalog-btn"><i class="fa fa-bars"></i> <span class="cat-label">Danh Mục Sản Phẩm</span></div>
         </div>
       </div>
 
@@ -228,63 +228,137 @@
   <!-- ====== JS ====== -->
   <script src="phonggym.js"></script>
   <script>
-    // Sidebar filter wiring for Whey category
-    document.addEventListener('DOMContentLoaded', () => {
-      const applyBtn = document.getElementById('applyFilters');
-      const clearBtn = document.getElementById('clearFilters');
-      const resultLabel = document.getElementById('resultCount');
+  // Align with creatine page behaviour: load only Whey products, initialize filters, and ensure immediate render
+  const TARGET_CATEGORY = 'Whey Protein';
 
-      function getSortValue(){ const s = document.getElementById('sortSelect'); return s ? s.value : 'featured'; }
+  document.addEventListener("productsLoaded", () => {
+    const targetCategory = TARGET_CATEGORY;
 
-      function applyFilters() {
-        let arr = (products || []).filter(p => p.category === 'Whey Protein');
+    // 1. Handle search query if present
+    const q = new URLSearchParams(window.location.search).get('q');
+    if (q) { doSearchQuery(q); return; }
 
-        const instock = document.getElementById('filter-instock').checked;
-        const outstock = document.getElementById('filter-outstock').checked;
-        if (instock && !outstock) arr = arr.filter(p => p.stock !== false);
-        if (!instock && outstock) arr = arr.filter(p => p.stock === false);
+    // 2. Load Whey products and render
+    loadProductsByCategory(targetCategory);
 
-        const min = parseInt(document.getElementById('priceMin').value) || null;
-        const max = parseInt(document.getElementById('priceMax').value) || null;
-        if (min) arr = arr.filter(p => p.price >= min);
-        if (max) arr = arr.filter(p => p.price <= max);
+    // 3. Initialize sidebar filters if available
+    if (typeof initSidebarFilters === 'function') { initSidebarFilters(); }
 
-        const checkedBrands = Array.from(document.querySelectorAll('.brand-checkbox:checked')).map(b => b.value.toLowerCase());
-        if (checkedBrands.length) {
-          arr = arr.filter(p => checkedBrands.some(b => p.title.toLowerCase().includes(b)));
-        }
+    // Update page heading
+    try { document.querySelector('h2').textContent = targetCategory + ' Supplements'; } catch(e){}
+  });
 
-        const sort = getSortValue();
-        if (sort === 'price-asc') arr.sort((a,b)=>a.price-b.price);
-        if (sort === 'price-desc') arr.sort((a,b)=>b.price-a.price);
+  // Ensure immediate render if products already loaded when DOMReady
+  document.addEventListener('DOMContentLoaded', () => {
+    try { if (typeof products !== 'undefined' && Array.isArray(products) && products.length) loadProductsByCategory(TARGET_CATEGORY); } catch(e){}
 
-        renderProducts(arr);
-        if (resultLabel) resultLabel.textContent = `${arr.length} Sản Phẩm`;
-      }
+    const WHEY_CAT = 'Whey Protein';
+    const applyBtn = document.getElementById('applyFilters');
+    const clearBtn = document.getElementById('clearFilters');
+    const resultLabel = document.getElementById('resultCount');
 
-      function clearFilters() {
-        document.getElementById('filter-instock').checked = false;
-        document.getElementById('filter-outstock').checked = false;
-        document.getElementById('priceMin').value = '';
-        document.getElementById('priceMax').value = '';
-        document.querySelectorAll('.brand-checkbox').forEach(b=>b.checked = false);
-        const total = (products || []).filter(p => p.category === 'Whey Protein').length;
-        loadProductsByCategory('Whey Protein');
-        if (resultLabel) resultLabel.textContent = `${total} Sản Phẩm`;
-      }
+    function getSortValue(){ const s = document.getElementById('sortSelect'); return s ? s.value : 'featured'; }
 
-      applyBtn?.addEventListener('click', applyFilters);
-      clearBtn?.addEventListener('click', clearFilters);
-      const sortSelect = document.getElementById('sortSelect');
-      sortSelect?.addEventListener('change', () => applyFilters());
+    function applyFilters() {
+      // filter by category across entire products set (case-insensitive)
+      let arr = (products || []).filter(p => ((p.categoryNormalized || p.category || '')).toString().toLowerCase().trim() === WHEY_CAT.toLowerCase());
 
-      setTimeout(()=>{
-        const initial = (products || []).filter(p => p.category === 'Whey Protein');
-        if (resultLabel) resultLabel.textContent = `${initial.length} Sản Phẩm`;
-        // initial render for this listing page
-        loadProductsByCategory('Whey Protein');
-      }, 80);
-    });
+      const instock = document.getElementById('filter-instock').checked;
+      const outstock = document.getElementById('filter-outstock').checked;
+      if (instock && !outstock) arr = arr.filter(p => p.stock !== false);
+      if (!instock && outstock) arr = arr.filter(p => p.stock === false);
+
+      const min = parseInt(document.getElementById('priceMin').value) || null;
+      const max = parseInt(document.getElementById('priceMax').value) || null;
+      if (min) arr = arr.filter(p => p.price >= min);
+      if (max) arr = arr.filter(p => p.price <= max);
+
+      const checkedBrands = Array.from(document.querySelectorAll('.brand-checkbox:checked')).map(b => b.value.toLowerCase());
+      if (checkedBrands.length) arr = arr.filter(p => checkedBrands.some(b => (p.title || '').toLowerCase().includes(b)));
+
+      const sort = getSortValue();
+      if (sort === 'price-asc') arr.sort((a,b)=>a.price-b.price);
+      if (sort === 'price-desc') arr.sort((a,b)=>b.price-a.price);
+
+      renderProducts(arr);
+      if (resultLabel) resultLabel.textContent = `${arr.length} Sản Phẩm`;
+    }
+
+    function clearFilters() {
+      document.getElementById('filter-instock').checked = false;
+      document.getElementById('filter-outstock').checked = false;
+      document.getElementById('priceMin').value = '';
+      document.getElementById('priceMax').value = '';
+      document.querySelectorAll('.brand-checkbox').forEach(b=>b.checked = false);
+
+      // Re-run filters to return to initial view
+      applyFilters();
+
+      const initialCount = (products || []).filter(p => ((p.categoryNormalized || p.category || '')).toString().toLowerCase().trim() === WHEY_CAT.toLowerCase()).length;
+      if (resultLabel) resultLabel.textContent = `${initialCount} Sản Phẩm`;
+    }
+
+    applyBtn?.addEventListener('click', applyFilters);
+    clearBtn?.addEventListener('click', clearFilters);
+    const sortSelect = document.getElementById('sortSelect');
+    sortSelect?.addEventListener('change', () => applyFilters());
+  });
   </script>
+  <script>
+    // Ensure wishlist badge is updated on this page (handle timing variations)
+    (function(){
+      function invokeUpdater(){
+        try{
+          if (typeof forceUpdateWishlistBadges === 'function') { forceUpdateWishlistBadges(); return true; }
+          if (typeof updateWishlistUI === 'function') { updateWishlistUI(); return true; }
+        }catch(e){}
+        return false;
+      }
+
+      if (!invokeUpdater()) setTimeout(() => { invokeUpdater(); }, 80);
+      let attempts = 0; const maxAttempts = 12;
+      const poll = setInterval(()=>{ attempts++; if (invokeUpdater() || attempts>=maxAttempts) clearInterval(poll); }, 150);
+
+      window.addEventListener('storage', () => { invokeUpdater(); });
+      window.addEventListener('wishlistChanged', () => { invokeUpdater(); });
+    })();
+  </script>
+  <script>
+    // Backup: update any header heart badges directly from localStorage (strong fallback)
+    (function(){
+      function readWishlistCount(){ try { return JSON.parse(localStorage.getItem('wishlist') || '[]').length; } catch(e) { return 0; } }
+
+      function updateHeaderWishlistBadges(){
+        try {
+          const count = readWishlistCount();
+          document.querySelectorAll('#wishlistCount').forEach(el => { el.textContent = count > 0 ? String(count) : '0'; });
+
+          const icons = Array.from(document.querySelectorAll('.header-inner i.fa-heart, .icon-btn i.fa-heart, header i.fa-heart'));
+          icons.forEach(icon => {
+            const container = icon.closest('a,button,div') || icon.parentElement;
+            if (!container) return;
+            let badge = container.querySelector('span') || icon.nextElementSibling;
+            if (badge && badge.tagName === 'SPAN') {
+              try { badge.textContent = count > 0 ? String(count) : '0'; } catch(e){}
+            } else {
+              const s = document.createElement('span');
+              s.id = 'wishlistCount';
+              s.textContent = count > 0 ? String(count) : '0';
+              s.style.cssText = 'position:relative;margin-left:6px;background:#ff3b30;color:#fff;padding:3px 6px;border-radius:50%;font-size:11px';
+              container.appendChild(s);
+            }
+            try { if (count > 0) container.classList.add('has-wishlist'); else container.classList.remove('has-wishlist'); container.setAttribute('aria-label', `Sản phẩm yêu thích: ${count}`); } catch(e){}
+          });
+        } catch(e) {}
+      }
+
+      try { updateHeaderWishlistBadges(); } catch(e){}
+      window.addEventListener('storage', (e)=>{ if (e.key === 'wishlist') try{ updateHeaderWishlistBadges(); }catch(e){} });
+      window.addEventListener('wishlistChanged', ()=>{ try{ updateHeaderWishlistBadges(); }catch(e){} });
+      setTimeout(updateHeaderWishlistBadges, 200);
+      setTimeout(updateHeaderWishlistBadges, 800);
+    })();
+  </script>
+
 </body>
 </html>

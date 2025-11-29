@@ -18,7 +18,7 @@
           <a href="TrangChu.html" class="brand">
             <img src="/IMG/logo1.png" alt="logo" />
           </a>
-          <div class="catalog-btn"><i class="fa fa-bars"></i> Danh Mục Sản Phẩm</div>
+          <div class="catalog-btn"><i class="fa fa-bars"></i> <span class="cat-label">Danh Mục Sản Phẩm</span></div>
         </div>
       </div>
 
@@ -237,7 +237,7 @@
       function getSortValue(){ const s = document.getElementById('sortSelect'); return s ? s.value : 'featured'; }
 
       function applyFilters() {
-        let arr = (products || []).filter(p => p.category === 'Diet Food');
+        let arr = (products || []).filter(p => ((p.categoryNormalized || p.category || '').toString().trim()) === 'Diet Food');
 
         const instock = document.getElementById('filter-instock').checked;
         const outstock = document.getElementById('filter-outstock').checked;
@@ -268,7 +268,7 @@
         document.getElementById('priceMin').value = '';
         document.getElementById('priceMax').value = '';
         document.querySelectorAll('.brand-checkbox').forEach(b=>b.checked = false);
-  const total = (products || []).filter(p => p.category === 'Diet Food').length;
+  const total = (products || []).filter(p => ((p.categoryNormalized || p.category || '').toString().trim()) === 'Diet Food').length;
   // reset to Diet Food listing when clearing filters
   loadProductsByCategory('Diet Food');
         if (resultLabel) resultLabel.textContent = `${total} Sản Phẩm`;
@@ -280,7 +280,7 @@
       sortSelect?.addEventListener('change', () => applyFilters());
 
       setTimeout(()=>{
-        const initial = (products || []).filter(p => p.category === 'Diet Food');
+        const initial = (products || []).filter(p => ((p.categoryNormalized || p.category || '').toString().trim()) === 'Diet Food');
         if (resultLabel) resultLabel.textContent = `${initial.length} Sản Phẩm`;
       }, 80);
     });

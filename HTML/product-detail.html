@@ -26,7 +26,7 @@
           <a href="TrangChu.html" class="brand">
             <img src="/IMG/logo1.png" alt="logo" />
           </a>
-          <div class="catalog-btn"><i class="fa fa-bars"></i> Danh Mục Sản Phẩm</div>
+          <div class="catalog-btn"><i class="fa fa-bars"></i> <span class="cat-label">Danh Mục Sản Phẩm</span></div>
         </div>
       </div>
 
@@ -35,6 +35,8 @@
         <div class="search">
           <input id="searchInput" type="search" placeholder="Tìm kiếm bài viết hoặc thông tin..." autocomplete="off">
           <button id="searchBtn">Tìm Kiếm</button>
+          <!-- inline suggestions for product-detail page (compact, matches header style) -->
+          <ul id="searchSuggestions" class="suggestions hidden" aria-label="Gợi ý tìm kiếm"></ul>
         </div>
       </div>
 
@@ -171,7 +173,7 @@
 
   <script src="phonggym.js"></script>
   <script>
-    (function(){
+    function renderProductDetail(){
       const root = document.getElementById('productDetail');
       function q(name){ return new URLSearchParams(location.search).get(name); }
       const id = parseInt(q('id')) || null;
@@ -276,10 +278,10 @@
               </div>
             <div class="pd-mainimg">
               ${badgeHtml}
-              <img id="pdMainImg" src="${gallery[0]}" alt="${p.title}">
+              <img id="pdMainImg" src="${gallery[0]}" alt="${p.title}" loading="lazy" decoding="async">
             </div>
             <ul class="pd-thumbs">
-              ${gallery.map((g,i)=>`<li ${i===0? 'class="active"':''} data-src="${g}"><img src="${g}"/></li>`).join('')}
+              ${gallery.map((g,i)=>`<li ${i===0? 'class="active"':''} data-src="${g}"><img src="${g}" loading="lazy" decoding="async"/></li>`).join('')}
             </ul>
           </div>
 
@@ -538,8 +540,11 @@
           if (flavor) note += `\nMùi: ${flavor}`;
           note += `\nMở giỏ hàng để kiểm tra và tiếp tục thanh toán.`;
 
-          if (typeof showToast === 'function') showToast(note);
-          else alert(note);
+          // respect global flag to suppress add-to-cart toasts
+          if (!window.SUPPRESS_ADD_TO_CART_TOAST) {
+            if (typeof showToast === 'function') showToast(note);
+            else alert(note);
+          }
         });
       }
 
@@ -678,7 +683,18 @@
           if (span) span.textContent = count > 0 ? count : '0';
         } catch (e) { console.error('updateWishlistBadge', e); }
       }
-    })();
+    }
+
+    // If products already loaded, render immediately; otherwise wait for 'productsLoaded'
+    if (typeof products !== 'undefined' && Array.isArray(products) && products.length) {
+      renderProductDetail();
+    } else {
+      document.addEventListener('productsLoaded', renderProductDetail);
+    }
+    // Also try on DOMContentLoaded as a fallback in case products are injected earlier
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof products !== 'undefined' && Array.isArray(products) && products.length) renderProductDetail();
+    });
   </script>
 </body>
 </html>

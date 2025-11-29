@@ -19,7 +19,7 @@
           <a href="TrangChu.html" class="brand">
             <img src="/IMG/logo1.png" alt="logo" />
           </a>
-          <div class="catalog-btn"><i class="fa fa-bars"></i> Danh Mục Sản Phẩm</div>
+          <div class="catalog-btn"><i class="fa fa-bars"></i> <span class="cat-label">Danh Mục Sản Phẩm</span></div>
         </div>
       </div>
 
@@ -217,85 +217,158 @@
         </div>
       </div>
     </div>
-    
-    
-  </footer>
-  <!-- ====== JS ====== -->
-  <script src="phonggym.js"></script>
-  <script>
-    // Khi trang Creatine được mở: nếu có query `q` thì hiển thị kết quả tìm kiếm,
-    // còn không thì load theo category Creatine.
-    document.addEventListener("DOMContentLoaded", () => {
-      const q = new URLSearchParams(window.location.search).get('q');
-      if (q) {
-        const matches = products.filter(p => p.title.toLowerCase().includes(q.toLowerCase()));
-        renderProducts(matches);
-        document.querySelector('.products')?.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        // show a visible debug count and render matches so the user can see if any products were found
-        const filtered = products.filter(p => p.category === 'Creatine');
-        const dbg = document.getElementById('debugMsg');
-        if (dbg) dbg.textContent = `Tìm thấy ${filtered.length} sản phẩm cho "Creatine"`;
-        renderProducts(filtered);
-      }
-    });
-  </script>
-  <script>
-    // Sidebar filter wiring for Creatine category
-    document.addEventListener('DOMContentLoaded', () => {
-      const applyBtn = document.getElementById('applyFilters');
-      const clearBtn = document.getElementById('clearFilters');
-      const resultLabel = document.getElementById('resultCount');
+    <div class="product-grid" id="productGrid">
+    </div>
+    
+  </footer>
+    <script src="phonggym.js"></script>
+  <script>
+  const TARGET_CATEGORY = 'Creatine'; // Tên category cần lọc (dùng chung)
 
-      function getSortValue(){ const s = document.getElementById('sortSelect'); return s ? s.value : 'featured'; }
+  document.addEventListener("productsLoaded", () => {
+    const targetCategory = TARGET_CATEGORY;
 
-      function applyFilters() {
-        let arr = (products || []).filter(p => p.category === 'Creatine');
-
-        const instock = document.getElementById('filter-instock').checked;
-        const outstock = document.getElementById('filter-outstock').checked;
-        if (instock && !outstock) arr = arr.filter(p => p.stock !== false);
-        if (!instock && outstock) arr = arr.filter(p => p.stock === false);
-
-        const min = parseInt(document.getElementById('priceMin').value) || null;
-        const max = parseInt(document.getElementById('priceMax').value) || null;
-        if (min) arr = arr.filter(p => p.price >= min);
-        if (max) arr = arr.filter(p => p.price <= max);
-
-        const checkedBrands = Array.from(document.querySelectorAll('.brand-checkbox:checked')).map(b => b.value.toLowerCase());
-        if (checkedBrands.length) {
-          arr = arr.filter(p => checkedBrands.some(b => p.title.toLowerCase().includes(b)));
+        // 1. Xử lý tìm kiếm (nếu có)
+        const q = new URLSearchParams(window.location.search).get('q');
+        if (q) {
+            doSearchQuery(q); 
+            return;
+        }
+        
+        // 2. Load sản phẩm Creatine và render (Dùng hàm đã fix lỗi trim/case-insensitive)
+        loadProductsByCategory(targetCategory);
+        
+        // 3. Khởi tạo Sidebar Filters (cần chạy sau khi products đã có)
+        // (Giả định hàm này nằm trong phonggym.js hoặc đã được định nghĩa)
+        if (typeof initSidebarFilters === 'function') {
+            initSidebarFilters();
         }
 
-        const sort = getSortValue();
-        if (sort === 'price-asc') arr.sort((a,b)=>a.price-b.price);
-        if (sort === 'price-desc') arr.sort((a,b)=>b.price-a.price);
+        // Sửa tiêu đề trang
+        document.querySelector('h2').textContent = targetCategory + ' Supplements';
+    });
+    
+    // Sidebar filter wiring - Đảm bảo chỉ áp dụng logic lọc Creatine
+    // If products are already available when DOMContentLoaded fires,
+    // render the Creatine category immediately so the user doesn't
+    // have to click twice.
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        if (typeof products !== 'undefined' && Array.isArray(products) && products.length) {
+          loadProductsByCategory(TARGET_CATEGORY);
+        }
+      } catch(e) {}
+        
+        const CREATINE_CAT = 'Creatine';
+        const applyBtn = document.getElementById('applyFilters');
+        const clearBtn = document.getElementById('clearFilters');
+        const resultLabel = document.getElementById('resultCount');
+        
+        function getSortValue(){ const s = document.getElementById('sortSelect'); return s ? s.value : 'featured'; }
 
-        renderProducts(arr);
-        if (resultLabel) resultLabel.textContent = `${arr.length} Sản Phẩm`;
-      }
+        function applyFilters() {
+            // FIX: Đảm bảo lọc category TRƯỚC VÀ TRÊN TOÀN BỘ sản phẩm
+            let arr = (products || []).filter(p => ((p.categoryNormalized || p.category || '')).toLowerCase().trim() === CREATINE_CAT.toLowerCase());
 
-      function clearFilters() {
-        document.getElementById('filter-instock').checked = false;
-        document.getElementById('filter-outstock').checked = false;
-        document.getElementById('priceMin').value = '';
-        document.getElementById('priceMax').value = '';
-        document.querySelectorAll('.brand-checkbox').forEach(b=>b.checked = false);
-        const total = (products || []).filter(p => p.category === 'Creatine').length;
-        loadProductsByCategory('Creatine');
-        if (resultLabel) resultLabel.textContent = `${total} Sản Phẩm`;
-      }
+            const instock = document.getElementById('filter-instock').checked;
+            const outstock = document.getElementById('filter-outstock').checked;
+            if (instock && !outstock) arr = arr.filter(p => p.stock !== false);
+            if (!instock && outstock) arr = arr.filter(p => p.stock === false);
+            // ... (rest of filtering logic for min/max price, brands) ...
+            
+            const min = parseInt(document.getElementById('priceMin').value) || null;
+            const max = parseInt(document.getElementById('priceMax').value) || null;
+            if (min) arr = arr.filter(p => p.price >= min);
+            if (max) arr = arr.filter(p => p.price <= max);
 
-      applyBtn?.addEventListener('click', applyFilters);
-      clearBtn?.addEventListener('click', clearFilters);
-      const sortSelect = document.getElementById('sortSelect');
-      sortSelect?.addEventListener('change', () => applyFilters());
+            const checkedBrands = Array.from(document.querySelectorAll('.brand-checkbox:checked')).map(b => b.value.toLowerCase());
+            if (checkedBrands.length) {
+                arr = arr.filter(p => checkedBrands.some(b => (p.title || '').toLowerCase().includes(b)));
+            }
 
-      setTimeout(()=>{
-        const initial = (products || []).filter(p => p.category === 'Creatine');
-        if (resultLabel) resultLabel.textContent = `${initial.length} Sản Phẩm`;
-      }, 80);
+            const sort = getSortValue();
+            if (sort === 'price-asc') arr.sort((a,b)=>a.price-b.price);
+            if (sort === 'price-desc') arr.sort((a,b)=>b.price-a.price);
+
+            renderProducts(arr);
+            if (resultLabel) resultLabel.textContent = `${arr.length} Sản Phẩm`;
+        }
+
+        function clearFilters() {
+            // ... (rest of clearing logic) ...
+            document.getElementById('filter-instock').checked = false;
+            document.getElementById('filter-outstock').checked = false;
+            document.getElementById('priceMin').value = '';
+            document.getElementById('priceMax').value = '';
+            document.querySelectorAll('.brand-checkbox').forEach(b=>b.checked = false);
+            
+            // FIX: Chạy lại filter với bộ lọc rỗng để về trạng thái ban đầu
+            applyFilters();
+            
+            const initialCount = (products || []).filter(p => ((p.categoryNormalized || p.category || '')).toLowerCase().trim() === CREATINE_CAT.toLowerCase()).length;
+            if (resultLabel) resultLabel.textContent = `${initialCount} Sản Phẩm`;
+        }
+
+        applyBtn?.addEventListener('click', applyFilters);
+        clearBtn?.addEventListener('click', clearFilters);
+        const sortSelect = document.getElementById('sortSelect');
+        sortSelect?.addEventListener('change', () => applyFilters());
     });
-  </script>
+    </script>
+    <script>
+      // Ensure wishlist badge is updated on Creatine page (handle timing variations)
+      (function(){
+        function invokeUpdater(){
+          try{
+            if (typeof forceUpdateWishlistBadges === 'function') { forceUpdateWishlistBadges(); return true; }
+            if (typeof updateWishlistUI === 'function') { updateWishlistUI(); return true; }
+          }catch(e){}
+          return false;
+        }
+
+        if (!invokeUpdater()) setTimeout(() => { invokeUpdater(); }, 80);
+        let attempts = 0; const maxAttempts = 12;
+        const poll = setInterval(()=>{ attempts++; if (invokeUpdater() || attempts>=maxAttempts) clearInterval(poll); }, 150);
+
+        window.addEventListener('storage', () => { invokeUpdater(); });
+        window.addEventListener('wishlistChanged', () => { invokeUpdater(); });
+      })();
+    </script>
+      <script>
+        // Backup mạnh: cập nhật mọi badge tim trên header từ localStorage trực tiếp (giống TrangChu)
+        (function(){
+          function readWishlistCount(){ try { return JSON.parse(localStorage.getItem('wishlist') || '[]').length; } catch(e) { return 0; } }
+
+          function updateHeaderWishlistBadges(){
+            try {
+              const count = readWishlistCount();
+              document.querySelectorAll('#wishlistCount').forEach(el => { el.textContent = count > 0 ? String(count) : '0'; });
+
+              const icons = Array.from(document.querySelectorAll('.header-inner i.fa-heart, .icon-btn i.fa-heart, header i.fa-heart'));
+              icons.forEach(icon => {
+                const container = icon.closest('a,button,div') || icon.parentElement;
+                if (!container) return;
+                let badge = container.querySelector('span') || icon.nextElementSibling;
+                if (badge && badge.tagName === 'SPAN') {
+                  try { badge.textContent = count > 0 ? String(count) : '0'; } catch(e){}
+                } else {
+                  const s = document.createElement('span');
+                  s.id = 'wishlistCount';
+                  s.textContent = count > 0 ? String(count) : '0';
+                  s.style.cssText = 'position:relative;margin-left:6px;background:#ff3b30;color:#fff;padding:3px 6px;border-radius:50%;font-size:11px';
+                  container.appendChild(s);
+                }
+                try { if (count > 0) container.classList.add('has-wishlist'); else container.classList.remove('has-wishlist'); container.setAttribute('aria-label', `Sản phẩm yêu thích: ${count}`); } catch(e){}
+              });
+            } catch(e) {}
+          }
+
+          try { updateHeaderWishlistBadges(); } catch(e){}
+          window.addEventListener('storage', (e)=>{ if (e.key === 'wishlist') try{ updateHeaderWishlistBadges(); }catch(e){} });
+          window.addEventListener('wishlistChanged', ()=>{ try{ updateHeaderWishlistBadges(); }catch(e){} });
+          setTimeout(updateHeaderWishlistBadges, 200);
+          setTimeout(updateHeaderWishlistBadges, 800);
+        })();
+      </script>
 </body>
 </html>

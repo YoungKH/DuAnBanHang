@@ -1,3 +1,39 @@
+
+/* Search suggestions dropdown */
+.search-suggestions {
+  position: fixed;
+  z-index: 1200;
+  background: #fff;
+  border: 1px solid rgba(15,23,36,0.08);
+  box-shadow: 0 12px 36px rgba(2,6,23,0.12);
+  display: none;
+  border-radius: 8px;
+  overflow: auto;
+  max-height: 420px;
+}
+.search-suggestions .suggest-item {
+  display: flex;
+  gap: 14px;
+  padding: 14px 16px;
+  align-items: center;
+  cursor: pointer;
+  transition: background .12s ease, padding .08s ease;
+}
+.search-suggestions .suggest-item:hover,
+.search-suggestions .suggest-item.focused {
+  background: #fbfdff;
+}
+.search-suggestions .si-img { width:56px; height:56px; flex: 0 0 56px; display:flex; align-items:center; justify-content:center; }
+.search-suggestions .si-img img { max-width:100%; max-height:100%; object-fit:contain; border-radius:6px; }
+.search-suggestions .si-body { flex:1; min-width:0; }
+.search-suggestions .si-title { font-size:14px; color:#0f172a; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.search-suggestions .si-price { font-size:14px; color:#1e40af; margin-top:6px; font-weight:700; }
+
+.search-suggestions .suggest-item { border-bottom: 1px dashed #e6e6e6; }
+.search-suggestions .suggest-item:last-child { border-bottom: none; }
+
+/* position the suggestions relative to the search input */
+#searchInput { position: relative; }
 /* =====================================================
    RESET & GLOBAL
 ===================================================== */
@@ -258,6 +294,64 @@ ul {
   .badge { top: 8px; left: 8px; padding:5px 8px; font-size:12px }
 }
 
+/* ===== Uniform product card layout ===== */
+/* Make each card a vertical flex container so content aligns consistently */
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 420px; /* consistent card height for desktop */
+}
+
+.card-media {
+  flex: 0 0 220px; /* fixed media area height */
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fafcfe;
+}
+.card-media img { max-height: 180px; width: auto; height: auto; max-width: 100%; object-fit: contain; }
+
+.card-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 16px;
+}
+
+/* Make title wrap to two lines and truncate if longer */
+.card .title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 44px; /* reserve space for two lines */
+}
+
+/* Ensure action buttons stay at the bottom of the card body */
+.card .actions {
+  margin-top: auto;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Smaller cards on narrow screens */
+@media (max-width: 900px) {
+  .card { height: auto; }
+  .card-media { flex: 0 0 160px; }
+  .card-media img { max-height: 140px }
+}
+
+@media (max-width: 600px) {
+  .card { height: auto; }
+  .card-media { flex: 0 0 140px; padding: 12px }
+  .card .title { -webkit-line-clamp: 3; line-clamp: 3; min-height: 66px }
+}
+
 
 /* =====================================================
    TOP BAR
@@ -295,7 +389,7 @@ ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 18px;
+  padding: 10px 14px;
   gap: 12px;
 }
 
@@ -309,7 +403,7 @@ ul {
 }
 
 .brand img {
-  height: 84px; /* increased size to match requested design */
+  height: 84px; /* default desktop size; mobile override below */
   transition: transform 0.3s ease;
 }
 
@@ -318,22 +412,92 @@ ul {
 }
 
 .catalog-btn {
-  display: block; /* show on desktop and mobile so the panel is reachable */
-  padding: 8px 10px;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid #eef3f5;
+  background: #ffffff;
+  color: #0b1220;
+  font-weight: 700;
   cursor: pointer;
-  color: #333;
-  font-weight: 600;
-  transition: all 0.18s ease;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
   box-shadow: 0 6px 18px rgba(2,6,23,0.04);
 }
 
 .catalog-btn:hover {
-  background: #f3f6ff;
+  background: #f8fbff;
   color: #2743ff;
+  transform: translateY(-2px);
 }
+
+/* -------- Header - Minimal / Mobile Friendly -------- */
+/* Default: keep header compact; on small screens show only cart icon */
+.brand img { height: 56px; }
+
+/* Hide most right-side icons by default to keep header clean */
+.right-block .icon-btn { display: none !important; }
+
+/* Ensure cart remains visible and prominent */
+.right-block .cart {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #eef3f5;
+  box-shadow: 0 8px 24px rgba(2,6,23,0.06);
+}
+.right-block .cart i { color: #2743ff; font-size: 18px }
+
+/* compact cart badge */
+#cartCount { top: -6px; right: -6px; padding: 4px 6px; font-size: 11px }
+
+/* hide search in header on small screens to free space; will open when .open is added */
+.header-inner .search { display: none }
+
+/* Mobile search button (visible on small screens) */
+.mobile-search-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: #fff;
+  margin-right: 8px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.06);
+}
+.mobile-search-btn i { font-size: 16px; color: #2743ff }
+
+/* when search is opened on mobile, make it a fixed centered overlay */
+.search.open {
+  display: flex !important;
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  top: 12px;
+  z-index: 12000;
+  padding: 8px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 18px 48px rgba(2,6,23,0.12);
+}
+.search.open input { padding: 10px 12px; font-size: 15px }
+
+/* Desktop: restore full header (search + icons) */
+@media (min-width: 900px) {
+  .header-inner .search { display: flex !important; width: 72%; max-width: 920px }
+  .right-block .icon-btn { display: inline-flex !important }
+  .brand img { height: 84px }
+  .right-block .cart { background: transparent; box-shadow: none; border: 0 }
+}
+
 
 /* =====================================================
    SEARCH BAR
@@ -353,6 +517,29 @@ ul {
   overflow: hidden;
   border: 1px solid #ddd;
 }
+
+/* Compact header-specific search and icons */
+.header-inner .search {
+  width: 72%; /* increase header search width */
+  max-width: 920px;
+  border-radius: 12px;
+  box-shadow: 0 8px 26px rgba(2,6,23,0.06);
+}
+.header-inner .search input { padding: 12px 16px; font-size: 15px }
+.header-inner .search button { padding: 10px 14px; font-size: 15px; border-radius: 10px }
+
+.right-block { display:flex; align-items:center; gap:8px }
+.right-block .icon-btn { padding: 6px 8px; border-radius:8px; min-width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center }
+.right-block .icon-btn i { font-size:18px }
+
+/* Hide textual labels inside header icon buttons but keep numeric count spans visible */
+.header-inner .icon-btn span:not(#wishlistCount):not(#cartCount) { display: none }
+
+/* Make wishlist/cart count badges smaller and centered */
+#wishlistCount, #cartCount { position: absolute; top: -6px; right: -6px; background:#ff3b30; color:#fff; padding:3px 6px; border-radius:50%; font-size:11px }
+
+/* Ensure catalog hamburger remains visually balanced with icons */
+.logo-catalog .catalog-btn { margin-right: 8px }
 
 /* position context for suggestions dropdown */
 .search {
@@ -480,6 +667,18 @@ ul {
 #wishlistBtn:hover {
   background: linear-gradient(90deg, rgba(255,77,0,0.08), rgba(214,58,0,0.04));
   color: #ff4d00;
+}
+
+/* Visual state when there are favorites */
+#wishlistBtn.has-wishlist i { color: #ff3b30; transform: scale(1.05); }
+
+/* small pulse animation for the numeric badge */
+.badge-pulse { animation: wishPulse .8s ease; }
+@keyframes wishPulse {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.28); }
+  60% { transform: scale(0.96); }
+  100% { transform: scale(1); }
 }
 
 
@@ -735,6 +934,12 @@ main.container { display: grid; grid-template-columns: 260px 1fr; gap: 26px; ali
   .sidebar { order: 2 }
 }
 
+/* Hide left sidebar on small phones to avoid cluttering the UI */
+@media (max-width: 900px) {
+  .sidebar { display: none !important; }
+  main.container, .container { grid-template-columns: 1fr !important; padding-left: 12px; padding-right: 12px }
+}
+
 /* Features row (four icons) */
 .features {
   margin: 20px auto;
@@ -826,7 +1031,7 @@ main.container { display: grid; grid-template-columns: 260px 1fr; gap: 26px; ali
 
 .product-grid {
   display: grid;
-
+}
 /* Auto-add control panel (small floating control for category pages) */
 .autoadd-panel { display:none }
 .autoadd-panel input[type="number"] { padding:6px 8px; border-radius:6px; border:1px solid #e6eef5 }
@@ -956,10 +1161,17 @@ main.container { display: grid; grid-template-columns: 260px 1fr; gap: 26px; ali
 .modal-code { display:flex; gap:8px; align-items:center; margin-top:10px }
 .modal-code #studentCode { background:#f3f6f8; padding:8px 12px; border-radius:8px; font-weight:700 }
 .modal-code .btn-claim { background:#2743ff; color:#fff; border:0; padding:8px 12px; border-radius:8px; cursor:pointer }
-  /* Force 4 columns on desktop, responsive below */
+
+/* Force 4 columns on desktop, responsive below */
+.product-grid {
   grid-template-columns: repeat(4, 1fr);
   gap: 26px;
+  /* make rows equal height so cards align */
+  grid-auto-rows: 1fr;
 }
+
+/* Make each grid card fill its grid cell height so buttons align */
+.product-grid .card { height: 100%; }
 
 /* PRODUCT CARD */
 .card {
@@ -1001,6 +1213,52 @@ main.container { display: grid; grid-template-columns: 260px 1fr; gap: 26px; ali
   }
   .main-banner img { height: 220px; }
   .search { width: 92%; }
+}
+
+/* Compact swipeable product lists for homepage sections (Diet Food, Whey, Creatine) */
+@media (max-width: 760px) {
+  /* make those specific grids horizontal scroll tracks */
+  #bestSellersGrid.product-grid,
+  #bestSeller.product-grid,
+  #bestCreatine.product-grid {
+    display: flex !important;
+    flex-direction: row;
+    gap: 12px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 6px;
+    scroll-snap-type: x mandatory;
+  }
+
+  /* compact cards for easier swiping */
+  #bestSellersGrid .card,
+  #bestSeller .card,
+  #bestCreatine .card {
+    min-width: 160px;
+    max-width: 170px;
+    flex: 0 0 160px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  /* shrink image container to fit compact card */
+  #bestSellersGrid .card-media,
+  #bestSeller .card-media,
+  #bestCreatine .card-media {
+    padding: 10px;
+    aspect-ratio: 4 / 3;
+  }
+
+  /* smaller title and price in compact cards */
+  #bestSellersGrid .title,
+  #bestSeller .title,
+  #bestCreatine .title { font-size: 13px }
+  #bestSellersGrid .price,
+  #bestSeller .price,
+  #bestCreatine .price { font-size: 13px }
+
+  /* ensure cards snap into place while swiping */
+  #bestSellersGrid .card, #bestSeller .card, #bestCreatine .card { scroll-snap-align: start }
 }
 
 /* new card layout */
@@ -1119,6 +1377,7 @@ main.container { display: grid; grid-template-columns: 260px 1fr; gap: 26px; ali
 .cart-item .cart-meta strong {
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1258,6 +1517,12 @@ main.container { display: grid; grid-template-columns: 260px 1fr; gap: 26px; ali
         }
 
         /* Mobile */
+        @media (max-width: 760px) {
+          /* Ensure the catalog hamburger shows only the 3-bar icon on mobile */
+          .catalog-btn { width:44px; height:44px; padding:0; border-radius:10px; font-size:0; display:inline-flex; align-items:center; justify-content:center }
+          .catalog-btn i { font-size:18px }
+          .catalog-btn .cat-label { display:none !important }
+        }
         @media (max-width: 600px) {
             .footer-top {
                 text-align: center; /* Căn giữa trên mobile */
@@ -1470,6 +1735,19 @@ main.container { display: grid; grid-template-columns: 260px 1fr; gap: 26px; ali
   transform: translateY(0);
 }
 .need-card:hover .vtitle { transform: translateY(-4px) scale(1.02); transition: transform 220ms ease; }
+
+/* Mobile-friendly overrides for the 'Nhu cầu sử dụng' section (match provided screenshot)
+   - two-column grid on narrow viewports
+   - shorter rectangular tiles with centered overlay text
+*/
+@media (max-width: 760px) {
+  .needs .needs-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .needs .need-card { aspect-ratio: auto; height: 150px; border-radius: 12px; border-width: 6px; }
+  .needs .need-bg { filter: brightness(0.48) saturate(1.05); }
+  .needs .vtitle { font-size: 15px; -webkit-text-stroke: 0.6px rgba(2,6,23,0.32); padding: 6px 10px }
+  .needs .stitle { display: block; font-size: 11px }
+}
+
 .stitle { color: #ffffff; font-size: 13px; margin-top: 2px; opacity: 0.95; font-family: 'Montserrat', Arial, sans-serif; font-weight: 600; }
 
 @media (max-width: 1000px) {

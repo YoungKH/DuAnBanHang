@@ -350,23 +350,30 @@ const products = [
   },
   {
     id: 3,
-    title: "BCAA 2:1:1 300g",
-    price: 349000,
-    img: "https://images.unsplash.com/photo-1580910051070-92b6b0f91d32?w=800&q=60",
+    title: "On BCAA 1000 viên",
+    price: 650000,
+    oldPrice: 850000,
+    badge: "-24%",
+    img: "../IMG/on.png",
     category: "BCAA",
   },
   {
     id: 4,
-    title: "Pre-Workout Energy 250g",
-    price: 399000,
-    img: "https://images.unsplash.com/photo-1612197527201-b0408a5f3f9b?w=800&q=60",
+    title: "Abe Pre-Workout Energy 315g",
+    price: 600000,
+    oldPrice:900000,
+    badge: "-33%",
+    variants: ["Lemon", "Fruit Punch", "Watermelon"],
+    img: "./../IMG/abe.png",
     category: "Pre-Workout",
   },
   {
     id: 5,
-    title: "Omega-3 120 viên",
-    price: 229000,
-    img: "https://images.unsplash.com/photo-1545216571-8f40b1f7d8d9?w=800&q=60",
+    title: " Vitamin Tổng Hợp Daily Multi Kirkland",
+    price: 530000,
+    oldPrice: 700000,
+    badge: "-24%",
+    img: "../IMG/kirk.jpg",
     category: "Vitamin",
   },
   {
@@ -384,344 +391,348 @@ const products = [
   // BCAA (add 14 more to reach 15)
   {
     id: 38,
-    title: "BCAA Amino Acid 300g - Tropical",
-    price: 289000,
+    title: "BCAA Xtend Original 500g",
+    price: 1200000,
+    variants: ["Fruit Punch", "Watermelon", "Blue Raspberry"],
     stock: true,
-    img: "/IMG/bcaa1.png",
+    img: "/IMG/xtend.png",
     category: "BCAA",
   },
   {
     id: 39,
-    title: "BCAA 2:1:1 - Fruit Punch 400g",
-    price: 349000,
+    title: "BCAA Hammer 60 viên",
+    price: 950000,
     stock: true,
-    img: "/IMG/bcaa2.png",
+    img: "/IMG/hammer.jpg",
     category: "BCAA",
   },
   {
     id: 40,
-    title: "BCAA Instant Drink 200g",
-    price: 199000,
+    title: "BCAA Siberian Sports 60 viên",
+    price: 500000,
     stock: true,
-    img: "/IMG/bcaa3.png",
+    img: "/IMG/siberian.png",
     category: "BCAA",
   },
   {
     id: 41,
-    title: "BCAA Plus Electrolytes 350g",
-    price: 329000,
+    title: "BCAA Xpress Scitec Nutrition 700g",
+    price: 700000,
     stock: false,
-    img: "/IMG/bcaa4.png",
+    img: "/IMG/xpress.jpg",
     category: "BCAA",
   },
   {
     id: 42,
-    title: "BCAA Capsules 120 viên",
-    price: 259000,
+    title: "Raze BCAA  450g",
+    price: 659000,
+    oldPrice: 799000,
+    badge: "-18%",
     stock: true,
-    img: "/IMG/bcaa5.png",
+    variants: ["Fruit Punch", "Blue Raspberry", "Watermelon"],
+    img: "/IMG/razebcaa.png",
     category: "BCAA",
   },
   {
     id: 43,
-    title: "BCAA Recovery Blend 500g",
-    price: 399000,
+    title: "Mutant BCAA Recovery  500g",
+    price: 699000,
+    variants: ["Fruit Punch", "Blue Raspberry", "Mango"],
     stock: true,
-    img: "/IMG/bcaa6.png",
+    img: "/IMG/mutantbcaa.png",
     category: "BCAA",
   },
   {
     id: 44,
-    title: "BCAA Zero Sugar 300g",
-    price: 279000,
+    title: "Applied Nutrition BCAA Lon 330ml",
+    price: 72000,
+    variants: ["Lemon"],
     stock: true,
-    img: "/IMG/bcaa7.png",
+    img: "/IMG/appliednutritionbcaa.png",
     category: "BCAA",
   },
   {
     id: 45,
-    title: "BCAA Hydrate 250g",
-    price: 219000,
+    title: "BPI Sports BCAA 300g",
+    price: 719000,
+    oldPrice: 899000,
+    badge: "-20%",
+    variants: ["Fruit Punch", "Blue Raspberry", "Watermelon"],
     stock: true,
-    img: "/IMG/bcaa8.png",
+    img: "/IMG/bpi.jpg",
     category: "BCAA",
   },
   {
     id: 46,
-    title: "BCAA Powder Mix 600g",
-    price: 449000,
+    title: "N1Protein BCAA 190 servings",
+    price: 749000,
     stock: false,
-    img: "/IMG/bcaa9.png",
+    img: "/IMG/n1.jpg",
     category: "BCAA",
   },
   {
     id: 47,
-    title: "Branched Chain Amino 400g",
-    price: 319000,
+    title: "Biotech BCAA 400g",
+    price: 619000,
+    badge: "-Voucher 200k",
+    variants: ["Fruit Punch", "Lemon Lime"],
     stock: true,
-    img: "/IMG/bcaa10.png",
+    img: "/IMG/biotechbcaa.jpg",
     category: "BCAA",
   },
   {
     id: 48,
-    title: "BCAA Powder - Lemon Lime 300g",
-    price: 289000,
+    title: "Rule 1 BCAA Powder 300g",
+    price: 589000,
+    variants: ["Fruit Punch", "Blue Raspberry", "Watermelon"],
     stock: true,
-    img: "/IMG/bcaa11.png",
+    img: "/IMG/r1bcaa.png",
     category: "BCAA",
   },
-  {
-    id: 49,
-    title: "BCAA + Glutamine 500g",
-    price: 379000,
-    stock: true,
-    img: "/IMG/bcaa12.png",
-    category: "BCAA",
-  },
-  {
-    id: 50,
-    title: "BCAA Ready-to-Drink 330ml (4-pack)",
-    price: 199000,
-    stock: true,
-    img: "/IMG/bcaa13.png",
-    category: "BCAA",
-  },
-  {
-    id: 51,
-    title: "BCAA Endurance 450g",
-    price: 419000,
-    stock: true,
-    img: "/IMG/bcaa14.png",
-    category: "BCAA",
-  },
+
 
   // Pre-Workout (add 14 more to reach 15)
   {
     id: 52,
-    title: "Pre-Workout Nitro Boost 300g",
-    price: 389000,
+    title: "Gold Standard Pre Workout 300g",
+    price: 700000,
+    oldPrice: 1000000,
+    badge: "-30%",
     stock: true,
-    img: "/IMG/pre1.png",
+    img: "/IMG/optimum.png",
+    variants: ["Fruit Punch", "Blueberry", "Watermelon"],
     category: "Pre-Workout",
   },
   {
     id: 53,
-    title: "Pump Formula Pre-Workout 250g",
-    price: 349000,
-    stock: true,
-    img: "/IMG/pre2.png",
+    title: "Nutricost Pre-Workout Complex 350g",
+    price: 660000,
+    stock: false,
+    variants: ["Green Apple", "Fruit Punch", "Grape"],
+    img: "/IMG/nutricost.png",
     category: "Pre-Workout",
   },
   {
     id: 54,
-    title: "Extreme Energy Pre-Workout 200g",
-    price: 329000,
-    stock: false,
-    img: "/IMG/pre3.png",
+    title: "NO Storm Pre-Workout 200g",
+    price: 750000,
+    oldPrice: 900000,
+    badge: "-17%",
+    variants: ["Blue Raspberry", "Watermelon"],
+    stock: true,
+    img: "/IMG/no.png",
     category: "Pre-Workout",
   },
   {
     id: 55,
-    title: "Pre-Workout Shot 60ml (10pcs)",
-    price: 249000,
+    title: "Raw Pump2 Pre-Workout 300g",
+    price: 729000,
+    oldPrice: 899000,
+    badge: "-19%",
     stock: true,
-    img: "/IMG/pre4.png",
+    variants: ["Fruit Punch", "Lemon Lime"],
+    img: "/IMG/rawpump.jpg",
     category: "Pre-Workout",
   },
   {
     id: 56,
-    title: "Focus Pre-Workout 180g",
-    price: 279000,
+    title: "Patch Pre-Workout 350g",
+    price: 450000,
+    oldPrice: 599000,
+    badge: "-25%",
+    variants: ["Blue Raspberry", "Tropical"],
     stock: true,
-    img: "/IMG/pre5.png",
+    img: "/IMG/tc.png",
     category: "Pre-Workout",
   },
   {
     id: 57,
-    title: "Stimulant-Free Pre-Workout 300g",
+    title: "Caffein Pre-Workout 300g",
     price: 359000,
+    oldPrice: 499000,
+    badge: "-28%",
+    variants: ["Lemon", "Orange", "Grape"],
     stock: true,
-    img: "/IMG/pre6.png",
+    img: "/IMG/cf.png",
     category: "Pre-Workout",
   },
   {
     id: 58,
-    title: "Pre-Workout Gummies 120g",
-    price: 199000,
+    title: "Evogen Pre-Workout 320g",
+    price: 1990000,
+    oldPrice: 2490000,
+    badge: "-20%",
     stock: true,
-    img: "/IMG/pre7.png",
+    variants: ["Fruit Punch", "Watermelon"],
+    img: "/IMG/evogenpre.png",
     category: "Pre-Workout",
   },
   {
     id: 59,
-    title: "Pre-Workout Focus Caps 60 viên",
-    price: 299000,
+    title: "Total War Pre-Workout 300g",
+    price: 899000,
     stock: false,
-    img: "/IMG/pre8.png",
+    img: "/IMG/totalwar.png",
     category: "Pre-Workout",
   },
   {
     id: 60,
-    title: "Nitric Oxide Pre-Workout 250g",
-    price: 339000,
+    title: "Power Pump BioX Pre-Workout 350g",
+    price: 1200000,
+    oldPrice: 1500000,
+    badge: "-20%",
     stock: true,
-    img: "/IMG/pre9.png",
+    variants: ["Fruit Punch", "Blue Raspberry"],
+    img: "/IMG/powerpump.png",
     category: "Pre-Workout",
   },
   {
     id: 61,
-    title: "Pre-Workout Xtreme 400g",
-    price: 459000,
+    title: "Abe Pump Pre-Workout Xtreme 400g",
+    price: 559000,
+    variants: ["Lemon", "Fruit Punch", "Watermelon"],
     stock: true,
-    img: "/IMG/pre10.png",
+    img: "/IMG/nonstim.jpg",
     category: "Pre-Workout",
   },
   {
     id: 62,
-    title: "Pre-Workout Amino Blend 300g",
-    price: 319000,
+    title: "EVL ENGN Pre-Workout Amino Blend 300g",
+    price: 600000,
+    variants: ["Fruit Punch", "Blue Raspberry"],
     stock: true,
-    img: "/IMG/pre11.png",
+    img: "/IMG/evl.jpg",
     category: "Pre-Workout",
   },
   {
     id: 63,
-    title: "Pre-Workout Energy Tabs 90 viên",
-    price: 219000,
+    title: "Nutrabio Pre-Workout",
+    price: 670000,
+    oldPrice: 799000,
+    badge:"Voucher 50K",
+    variants: ["Fruit Punch", "Blue Raspberry", "Grape"],
     stock: true,
-    img: "/IMG/pre12.png",
+    img: "/IMG/nutrabio.png",
     category: "Pre-Workout",
   },
   {
     id: 64,
-    title: "Pre-Workout Citrus Burst 300g",
-    price: 329000,
+    title: "Bulk Black Pre-Workout  300g",
+    price: 729000,
+    oldPrice: 899000,
+    badge: "-19%",
+    variants: ["Fruit Punch", "Lemon Lime"],
     stock: true,
-    img: "/IMG/pre13.png",
+    img: "/IMG/bulkblack.png",
     category: "Pre-Workout",
   },
   {
     id: 65,
-    title: "Pre-Workout Trial Pack 30g",
-    price: 99000,
+    title: "Sport Pre-Workout 300g",
+    price: 309900,
+    variants: ["Blue Raspberry", "Fruit Punch"],
     stock: true,
-    img: "/IMG/pre14.png",
+    img: "/IMG/sport.png",
     category: "Pre-Workout",
   },
 
   // Vitamin (add 14 more to reach 15)
   {
     id: 66,
-    title: "Multivitamin Daily 60 viên",
-    price: 199000,
+    title: "One A Day Vitamin 60 viên",
+    price: 499000,
+    oldPrice: 599000,
+    badge: "-17%",
     stock: true,
-    img: "/IMG/vit1.png",
+    img: "/IMG/1day.png",
     category: "Vitamin",
   },
   {
     id: 67,
-    title: "Vitamin D3 2000 IU - 90 viên",
-    price: 159000,
+    title: "BioTech USA Viên 3 Trong 1 Ca D3 K2 90 viên",
+    price: 500000,
     stock: true,
-    img: "/IMG/vit2.png",
+    img: "/IMG/biotechd3k2.jpg",
     category: "Vitamin",
   },
   {
     id: 68,
-    title: "Omega 3 Fish Oil 1000mg (120 softgels)",
-    price: 229000,
+    title: "Vitamin tổng hợp Ostrovit Vit&Min Forte",
+    price: 300000,
+    oldPrice: 450000,
     stock: true,
-    img: "/IMG/vit3.png",
+    img: "/IMG/vitaminostrovic.jpg",
     category: "Vitamin",
   },
   {
     id: 69,
-    title: "Vitamin C 1000mg - 60 viên",
-    price: 129000,
+    title: "Applied Nutrition Vitamin D3 3000 IU 90 Viên",
+    price: 400000,
     stock: false,
-    img: "/IMG/vit4.png",
+    img: "/IMG/vitamind3.jpg",
     category: "Vitamin",
   },
   {
     id: 70,
-    title: "Magnesium Complex 120 viên",
-    price: 199000,
+    title: "SR Vitamin D3+K2 60 viên",
+    price: 790000,
     stock: true,
-    img: "/IMG/vit5.png",
+    img: "/IMG/srvitamin.png",
     category: "Vitamin",
   },
   {
     id: 71,
-    title: "Zinc + Selenium 60 viên",
-    price: 149000,
+    title: "Viên uống Nutricost Vitamin K2 + D3 120 viên",
+    price: 449000,
     stock: true,
-    img: "/IMG/vit6.png",
+    img: "/IMG/nutricost.jpg",
     category: "Vitamin",
   },
   {
     id: 72,
-    title: "Probiotic Daily 30 servings",
+    title: "Now Vitamin D3 K2 120 viên",
     price: 319000,
     stock: true,
-    img: "/IMG/vit7.png",
+    img: "/IMG/now.png",
     category: "Vitamin",
   },
   {
     id: 73,
-    title: "Collagen Peptides 300g",
-    price: 279000,
+    title: "EVL Flexmode Advanced Joint Support - 90 viên",
+    price: 390000,
     stock: false,
-    img: "/IMG/vit8.png",
+    img: "/IMG/evl.png",
     category: "Vitamin",
   },
   {
     id: 74,
-    title: "B-Complex 50 viên",
-    price: 169000,
+    title: "Ostrovit Glucosamine + MSM + Chondroitin - 90 viên",
+    price: 420000,
     stock: true,
-    img: "/IMG/vit9.png",
+    img: "/IMG/msm.png",
     category: "Vitamin",
   },
   {
     id: 75,
-    title: "Iron + Folate 60 viên",
-    price: 139000,
+    title: "Nutrabolics Sleep Hack - 120 viên",
+    price: 650000,
+    oldPrice: 799000,
+    badge: "-18%",
     stock: true,
-    img: "/IMG/vit10.png",
+    img: "/IMG/sleephack.png",
     category: "Vitamin",
   },
   {
     id: 76,
-    title: "Calcium & Vitamin D 120 viên",
-    price: 199000,
+    title: "Now NAC 600mg - 250 viên",
+    price: 750000,
+    oldPrice: 899000,
+    badge: "-16%",
     stock: true,
-    img: "/IMG/vit11.png",
+    img: "/IMG/nac.png",
     category: "Vitamin",
   },
-  {
-    id: 77,
-    title: "Vitamin K2 60 viên",
-    price: 179000,
-    stock: true,
-    img: "/IMG/vit12.png",
-    category: "Vitamin",
-  },
-  {
-    id: 78,
-    title: "Antioxidant Complex 90 viên",
-    price: 249000,
-    stock: true,
-    img: "/IMG/vit13.png",
-    category: "Vitamin",
-  },
-  {
-    id: 79,
-    title: "Vitamin Essentials Pack (7-day)",
-    price: 99000,
-    stock: true,
-    img: "/IMG/vit14.png",
-    category: "Vitamin",
-  },
+  
 
   // Mass Gainer (add 14 more to reach 15)
   {
@@ -935,264 +946,162 @@ const products = [
   // Fat Burner (add 15)
   {
     id: 99,
-    title: "Fat Burner Thermo 60 viên",
-    price: 399000,
+    title: "Applied Nutrition Green Tea Fat Burner 90 Fast-Acting Liquid Soft-Gels",
+    price: 788000,
     stock: true,
-    img: "/IMG/fat1.png",
+    img: "/IMG/greentea.jpg",
     category: "Fat Burner",
   },
   {
     id: 100,
-    title: "L-Carnitine Liquid 500ml",
-    price: 249000,
+    title: "Super Fat Burner BiotechUSA 120 viên",
+    price: 650000,
     stock: true,
-    img: "/IMG/fat2.png",
+    img: "/IMG/superfat.jpg",
     category: "Fat Burner",
   },
   {
     id: 101,
-    title: "Green Tea Extract 90 viên",
-    price: 189000,
+    title: "Carnitine VitaXtrong 3000 31 servings",
+    price: 500000,
     stock: true,
-    img: "/IMG/fat3.png",
+    img: "/IMG/xtrong.jpg",
     category: "Fat Burner",
   },
   {
     id: 102,
-    title: "Thermogenic Caps 120 viên",
-    price: 429000,
+    title: "L Carnitine 3000mg Liquid & Green Tea",
+    price: 629000,
     stock: false,
-    img: "/IMG/fat4.png",
+    img: "/IMG/lcar.png",
     category: "Fat Burner",
   },
   {
     id: 103,
-    title: "Conjugated Linoleic Acid (CLA) 90 viên",
-    price: 229000,
+    title: "Ostrovit CLA + Green Tea + L-Carnitine 90 viên",
+    price: 259000,
     stock: true,
-    img: "/IMG/fat5.png",
+    img: "/IMG/cla.png",
     category: "Fat Burner",
   },
   {
     id: 104,
-    title: "Fat Burner Shot 60ml (8-pack)",
-    price: 299000,
+    title: "BURN FX - 120 Viên",
+    price: 699000,
     stock: true,
-    img: "/IMG/fat6.png",
+    img: "/IMG/fx.jpg",
     category: "Fat Burner",
   },
   {
     id: 105,
-    title: "Garcinia Cambogia 500mg - 60 viên",
-    price: 179000,
+    title: "Ostrovit L Carnitine 125000 Liquid 500ml",
+    price: 500000,
     stock: true,
-    img: "/IMG/fat7.png",
+    variants: ["Cherry", "Orange"],
+    img: "/IMG/ostrovicdotmo.jpg",
     category: "Fat Burner",
   },
   {
     id: 106,
-    title: "Caffeine Anhydrous 200mg - 120 viên",
-    price: 159000,
+    title: "Ostrovit L-Carnitine 1250mg",
+    price: 310000,
     stock: true,
-    img: "/IMG/fat8.png",
+    img: "/IMG/ostrovicl.png",
     category: "Fat Burner",
   },
-  {
-    id: 107,
-    title: "Metabolic Boost 90 viên",
-    price: 349000,
-    stock: true,
-    img: "/IMG/fat9.png",
-    category: "Fat Burner",
-  },
-  {
-    id: 108,
-    title: "Fat Burner Plus 60 viên",
-    price: 289000,
-    stock: false,
-    img: "/IMG/fat10.png",
-    category: "Fat Burner",
-  },
-  {
-    id: 109,
-    title: "Thermo Caps Extreme 30 viên",
-    price: 199000,
-    stock: true,
-    img: "/IMG/fat11.png",
-    category: "Fat Burner",
-  },
-  {
-    id: 110,
-    title: "Fat Burner Stimulant-Free 60 viên",
-    price: 319000,
-    stock: true,
-    img: "/IMG/fat12.png",
-    category: "Fat Burner",
-  },
-  {
-    id: 111,
-    title: "Thermo Complex 120 viên",
-    price: 459000,
-    stock: true,
-    img: "/IMG/fat13.png",
-    category: "Fat Burner",
-  },
-  {
-    id: 112,
-    title: "Fat Blocker 90 viên",
-    price: 239000,
-    stock: true,
-    img: "/IMG/fat14.png",
-    category: "Fat Burner",
-  },
-  {
-    id: 113,
-    title: "Thermo Drink Mix 300g",
-    price: 279000,
-    stock: true,
-    img: "/IMG/fat15.png",
-    category: "Fat Burner",
-  },
+  
 
   // Phụ Kiện (Accessories) - add 15
   {
     id: 114,
-    title: "Shaker Bottle 700ml",
-    price: 99000,
+    title: "Đai lưng mềm Harbinger 5inch",
+    price: 659000,
     stock: true,
-    img: "/IMG/acc1.png",
+    variants: ["size S", "size M", "size L", "size XL"],
+    img: "/IMG/harbinger.png",
     category: "Phụ Kiện",
   },
   {
     id: 115,
-    title: "Gym Gloves - Size M",
-    price: 149000,
+    title: "Đai lưng mềm Harbinger 4inch",
+    price: 449000,
+    variants: ["size S", "size M", "size L", "size XL"],
     stock: true,
     img: "/IMG/acc2.png",
     category: "Phụ Kiện",
   },
   {
     id: 116,
-    title: "Protein Scoop (Metal)",
-    price: 59000,
+    title: "Dây kéo lưng Lifting Strap YoungKH Whey ",
+    price: 159000,
     stock: true,
     img: "/IMG/acc3.png",
     category: "Phụ Kiện",
   },
   {
     id: 117,
-    title: "Resistance Band Set",
-    price: 179000,
+    title: "Đai lưng mềm YoungKH Whey 5inch",
+    price: 229000,
     stock: true,
     img: "/IMG/acc4.png",
     category: "Phụ Kiện",
   },
   {
     id: 118,
-    title: "Knee Sleeve Pair",
-    price: 219000,
-    stock: false,
+    title: "Quấn Cổ Tay YoungKH Whey",
+    price: 149000,
+    stock: true,
     img: "/IMG/acc5.png",
     category: "Phụ Kiện",
   },
   {
     id: 119,
-    title: "Lifting Straps",
-    price: 99000,
+    title: "Shaker Powder 650ml",
+    price: 79000,
     stock: true,
     img: "/IMG/acc6.png",
     category: "Phụ Kiện",
   },
   {
     id: 120,
-    title: "Gym Towel - Microfiber",
-    price: 69000,
+    title: "Bình Shaker Ostrovit 2200ml",
+    price: 169000,
     stock: true,
     img: "/IMG/acc7.png",
     category: "Phụ Kiện",
   },
   {
     id: 121,
-    title: "Phone Armband Holder",
-    price: 89000,
+    title: "Muscle Tech hũ đựng bột 200ml",
+    price: 80000,
     stock: true,
     img: "/IMG/acc8.png",
     category: "Phụ Kiện",
   },
   {
     id: 122,
-    title: "Foam Roller 45cm",
-    price: 199000,
+    title: "Túi Gymshark",
+    price: 219000,
     stock: true,
     img: "/IMG/acc9.png",
     category: "Phụ Kiện",
   },
-  {
-    id: 123,
-    title: "Waterproof Duffle Bag",
-    price: 399000,
-    stock: true,
-    img: "/IMG/acc10.png",
-    category: "Phụ Kiện",
-  },
-  {
-    id: 124,
-    title: "Jump Rope - Speed",
-    price: 89000,
-    stock: true,
-    img: "/IMG/acc11.png",
-    category: "Phụ Kiện",
-  },
-  {
-    id: 125,
-    title: "Wrist Wraps",
-    price: 99000,
-    stock: true,
-    img: "/IMG/acc12.png",
-    category: "Phụ Kiện",
-  },
-  {
-    id: 126,
-    title: "Meal Prep Container Set",
-    price: 159000,
-    stock: true,
-    img: "/IMG/acc13.png",
-    category: "Phụ Kiện",
-  },
-  {
-    id: 127,
-    title: "Gym Belt - Leather",
-    price: 249000,
-    stock: false,
-    img: "/IMG/acc14.png",
-    category: "Phụ Kiện",
-  },
-  {
-    id: 128,
-    title: "Protein Jar Organizer",
-    price: 129000,
-    stock: true,
-    img: "/IMG/acc15.png",
-    category: "Phụ Kiện",
-  },
+  
 
   // Sản Phẩm Thanh Lý (Sale / clearance) - add 15
   {
     id: 129,
-    title: "Clearance Whey 1kg - Limited",
-    price: 399000,
-    oldPrice: 599000,
-    badge: "-33%",
-    stock: true,
+    title: "VitaXtrong ISO PRO - Hydrolyzed Whey Isolate, 8 Lbs (3.60 Kg)",
+    price: 299000,
+    stock: false,
     img: "/IMG/sale1.png",
     category: "Sản Phẩm Thanh Lý",
   },
   {
     id: 130,
-    title: "Clearance BCAA 300g",
-    price: 189000,
-    oldPrice: 289000,
-    badge: "-34%",
+    title: "Labrada Iso Whey, 100% Whey Protein Isolate 5Lbs (2.3Kg)",
+    price: 1890000,
+    variants: ["Chocolate", "Vanilla", "Strawberry"],
     stock: true,
     img: "/IMG/sale2.png",
     category: "Sản Phẩm Thanh Lý",
@@ -1205,128 +1114,10 @@ const products = [
     badge: "-30%",
     stock: false,
     img: "/IMG/sale3.png",
+    variants: ["Chocolate", "Vanilla", "Strawberry"],
     category: "Sản Phẩm Thanh Lý",
   },
-  {
-    id: 132,
-    title: "Clearance Pre-Workout 200g",
-    price: 149000,
-    oldPrice: 249000,
-    badge: "-40%",
-    stock: true,
-    img: "/IMG/sale4.png",
-    category: "Sản Phẩm Thanh Lý",
-  },
-  {
-    id: 133,
-    title: "Clearance Protein Bars (6pcs)",
-    price: 129000,
-    oldPrice: 199000,
-    badge: "-35%",
-    stock: true,
-    img: "/IMG/sale5.png",
-    category: "Sản Phẩm Thanh Lý",
-  },
-  {
-    id: 134,
-    title: "Clearance Creatine 300g",
-    price: 149000,
-    oldPrice: 249000,
-    badge: "-40%",
-    stock: true,
-    img: "/IMG/sale6.png",
-    category: "Sản Phẩm Thanh Lý",
-  },
-  {
-    id: 135,
-    title: "Clearance Vitamin Pack",
-    price: 99000,
-    oldPrice: 159000,
-    badge: "-38%",
-    stock: true,
-    img: "/IMG/sale7.png",
-    category: "Sản Phẩm Thanh Lý",
-  },
-  {
-    id: 136,
-    title: "Clearance Shaker 500ml",
-    price: 49000,
-    oldPrice: 99000,
-    badge: "-50%",
-    stock: true,
-    img: "/IMG/sale8.png",
-    category: "Sản Phẩm Thanh Lý",
-  },
-  {
-    id: 137,
-    title: "Clearance Fitness Gloves",
-    price: 69000,
-    oldPrice: 129000,
-    badge: "-46%",
-    stock: false,
-    img: "/IMG/sale9.png",
-    category: "Sản Phẩm Thanh Lý",
-  },
-  {
-    id: 138,
-    title: "Clearance Fat Burner 60 viên",
-    price: 149000,
-    oldPrice: 299000,
-    badge: "-50%",
-    stock: true,
-    img: "/IMG/sale10.png",
-    category: "Sản Phẩm Thanh Lý",
-  },
-  {
-    id: 139,
-    title: "Clearance Protein Pancake Mix 400g",
-    price: 99000,
-    oldPrice: 179000,
-    badge: "-45%",
-    stock: true,
-    img: "/IMG/sale11.png",
-    category: "Sản Phẩm Thanh Lý",
-  },
-  {
-    id: 140,
-    title: "Clearance Resistance Band",
-    price: 59000,
-    oldPrice: 129000,
-    badge: "-54%",
-    stock: true,
-    img: "/IMG/sale12.png",
-    category: "Sản Phẩm Thanh Lý",
-  },
-  {
-    id: 141,
-    title: "Clearance Collagen 200g",
-    price: 79000,
-    oldPrice: 159000,
-    badge: "-50%",
-    stock: true,
-    img: "/IMG/sale13.png",
-    category: "Sản Phẩm Thanh Lý",
-  },
-  {
-    id: 142,
-    title: "Clearance Meal Prep Box",
-    price: 69000,
-    oldPrice: 129000,
-    badge: "-46%",
-    stock: true,
-    img: "/IMG/sale14.png",
-    category: "Sản Phẩm Thanh Lý",
-  },
-  {
-    id: 143,
-    title: "Clearance Gym Belt",
-    price: 119000,
-    oldPrice: 249000,
-    badge: "-52%",
-    stock: true,
-    img: "/IMG/sale15.png",
-    category: "Sản Phẩm Thanh Lý",
-  },
+  
 ];
 
 // Fill missing product descriptions with category-based defaults
@@ -1373,6 +1164,9 @@ const categories = [
   "Sản Phẩm Thanh Lý"
 ];
 
+// Site-wide flags (set to true to suppress the small 'added to cart' toast)
+window.SUPPRESS_ADD_TO_CART_TOAST = true;
+
 // =================== HÀM HỖ TRỢ ===================
 const formatPrice = (v) =>
   v.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "₫";
@@ -1393,6 +1187,20 @@ function renderCategories() {
   });
 }
 renderCategories();
+// notify other pages that products/categories are available (pages may listen for this)
+try { window.dispatchEvent(new Event('productsLoaded')); } catch(e) {}
+// Also ensure pages that register their listener after this script still get notified:
+try {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function onReady(){
+      try { window.dispatchEvent(new Event('productsLoaded')); } catch(e) {}
+      document.removeEventListener('DOMContentLoaded', onReady);
+    });
+  } else {
+    // If document already ready, re-dispatch asynchronously to allow late listeners to attach
+    setTimeout(()=>{ try { window.dispatchEvent(new Event('productsLoaded')); } catch(e) {} }, 0);
+  }
+} catch(e) {}
 
 // =================== CATEGORY PANEL (floating) ===================
 function createCategoryPanel() {
@@ -1441,7 +1249,20 @@ function createCategoryPanel() {
       const targetPage = pageMap[c] || pageMap['Whey Protein'];
       if (current === targetPage) {
         panel.classList.remove('open');
+        // filter in-place then wait for render to populate the grid and scroll to it
         filterByCategory(c);
+        // wait until #productGrid has children, then scroll into view
+        (function waitAndScroll(tries){
+          try {
+            const el = document.getElementById('productGrid');
+            if (el && el.children && el.children.length) {
+              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              return;
+            }
+          } catch(e) {}
+          if ((tries||0) > 20) return; // give up after ~1s
+          setTimeout(() => waitAndScroll((tries||0)+1), 50);
+        })();
       } else {
         window.location.href = targetPage;
       }
@@ -1901,6 +1722,8 @@ function renderProducts(list) {
   list.forEach((p) => {
     const card = document.createElement("div");
     card.className = "card";
+    // attach product id so delegated handlers (wishlist) can find it
+    try { card.setAttribute('data-id', String(p.id)); } catch(e) {}
     // decide whether to hide action buttons on homepage for certain categories
     const fname = (window.location.pathname.split('/').pop() || '').toLowerCase();
     const isHome = (fname === '' || fname === 'trangchu.html' || fname === 'index.html');
@@ -1910,6 +1733,10 @@ function renderProducts(list) {
       <div class="card-media">
         ${p.badge ? `<span class="badge">${p.badge}</span>` : ''}
         <img src="${p.img}" alt="${p.title}">
+        <div class="card-overlays">
+          <button class="icon-circle" title="Yêu thích"><i class="fa-regular fa-heart"></i></button>
+          <button class="icon-circle" title="So sánh"><i class="fa-solid fa-layer-group"></i></button>
+        </div>
       </div>
       <div class="card-body">
         <div class="title">${p.title}</div>
@@ -1931,6 +1758,10 @@ function renderProducts(list) {
       <div class="card-media">
         ${p.badge ? `<span class="badge">${p.badge}</span>` : ''}
         <img src="${p.img}" alt="${p.title}">
+        <div class="card-overlays">
+          <button class="icon-circle" title="Yêu thích"><i class="fa-regular fa-heart"></i></button>
+          <button class="icon-circle" title="So sánh"><i class="fa-solid fa-layer-group"></i></button>
+        </div>
       </div>
       <div class="card-body">
         <div class="title">${p.title}</div>
@@ -1952,15 +1783,81 @@ function renderProducts(list) {
     productGrid.appendChild(card);
     const innerControls = card.querySelectorAll('button, a');
     innerControls.forEach((el) => {
-      el.addEventListener('click', (ev) => ev.stopPropagation());
+      el.addEventListener('click', (ev) => {
+        // Allow delegated wishlist clicks on buttons with class 'icon-circle' to bubble
+        try {
+          if (el.classList && el.classList.contains && el.classList.contains('icon-circle')) {
+            return; // don't stop propagation so document-level handler can catch it
+          }
+        } catch (e) {}
+        ev.stopPropagation();
+      });
     });
   });
+  // After rendering all cards, ensure wishlist hearts reflect current wishlist
+  try { updateCardWishlistMarks(); } catch(e) {}
+}
+
+// Mark heart icons on product cards according to localStorage wishlist
+function updateCardWishlistMarks(){
+  try{
+    let wishlist = [];
+    try { wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]'); } catch(e) { wishlist = []; }
+    const ids = new Set((wishlist || []).map(i => Number(i.id)));
+    document.querySelectorAll('.card').forEach(card => {
+      const pid = parseInt(card.getAttribute('data-id'),10);
+      const heartBtn = card.querySelector('.icon-circle[title="Yêu thích"]');
+      if (!heartBtn) return;
+      const heartIcon = heartBtn.querySelector('i');
+      if (ids.has(pid)){
+        if (heartIcon) { heartIcon.classList.remove('fa-regular'); heartIcon.classList.add('fa-solid'); }
+        try { heartBtn.style.color = '#ff6b35'; } catch(e) {}
+      } else {
+        if (heartIcon) { heartIcon.classList.remove('fa-solid'); heartIcon.classList.add('fa-regular'); }
+        try { heartBtn.style.color = ''; } catch(e) {}
+      }
+    });
+  }catch(e){}
+}
+
+// Small wishlist preview panel (shows current wishlist items on any page)
+function renderWishlistPreview(){
+  try{
+    // only render on pages that have a header (avoid during tests)
+    const container = document.getElementById('wishlistPreviewPanel') || (function(){
+      const el = document.createElement('div'); el.id = 'wishlistPreviewPanel';
+      el.style.cssText = 'position:fixed;right:14px;bottom:14px;z-index:1200;background:rgba(255,255,255,0.98);border:1px solid #eee;padding:10px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.08);max-width:320px;max-height:360px;overflow:auto;font-family:inherit;font-size:13px';
+      document.body.appendChild(el);
+      return el;
+    })();
+
+    let wishlist = [];
+    try { wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]'); } catch(e){ wishlist = []; }
+
+    if (!wishlist || !wishlist.length) {
+      container.innerHTML = `<div style="display:flex;gap:10px;align-items:center"><strong>Yêu thích (0)</strong><div style="margin-left:auto"><a href=\"yeuThich.html\">Mở</a></div></div><div style=\"color:#666;margin-top:8px\">Bạn chưa thêm sản phẩm yêu thích.</div>`;
+      return;
+    }
+
+    const itemsHtml = wishlist.map(it => `
+      <div style="display:flex;gap:10px;align-items:center;padding:8px 0;border-top:1px solid #f3f4f6">
+        <img src="${it.img || ''}" style="width:48px;height:48px;object-fit:cover;border-radius:6px">
+        <div style="flex:1">
+          <div style="font-weight:600">${(it.title||'').slice(0,60)}</div>
+          <div style="color:#888;font-size:12px;margin-top:4px">${formatPrice(it.price||0)}</div>
+        </div>
+      </div>
+    `).join('');
+
+    container.innerHTML = `<div style="display:flex;align-items:center;gap:8px"><strong>Yêu thích (${wishlist.length})</strong><div style="margin-left:auto"><a href=\"yeuThich.html\">Mở</a></div></div>${itemsHtml}`;
+  }catch(e){ /* ignore */ }
 }
 
 // =================== KHỞI TẠO TRANG CHỦ ===================
 const sortSelect = document.getElementById("sortSelect");
-if (sortSelect) {
-  // Nếu có dropdown sắp xếp => đang ở trang chủ
+// Only treat this as the homepage sort control when we're actually on the homepage
+const __currentFileName = (window.location.pathname.split('/').pop() || '').toLowerCase();
+if (sortSelect && (__currentFileName === '' || __currentFileName === 'trangchu.html' || __currentFileName === 'index.html')) {
   // Exclude Whey Protein and Creatine from homepage product grid per user request
   const homepageProducts = products.filter(p => p.category !== 'Whey Protein' && p.category !== 'Creatine');
   renderProducts(homepageProducts);
@@ -2185,6 +2082,47 @@ function updateCartUI() {
         try { updateCartUI(); } catch(err) { /* ignore */ }
       };
     });
+
+    // add a Select All control in the cart footer (if present)
+    try{
+      if (cartPanel) {
+        const foot = cartPanel.querySelector('.cart-foot');
+        if (foot) {
+          // create wrapper only once
+          if (!foot.querySelector('#cartSelectAllWrap')) {
+            const wrap = document.createElement('div');
+            wrap.id = 'cartSelectAllWrap';
+            wrap.style.display = 'flex';
+            wrap.style.alignItems = 'center';
+            wrap.style.gap = '8px';
+            wrap.style.marginRight = '12px';
+            wrap.innerHTML = `<label style="display:inline-flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="cartSelectAll"> <span style="font-weight:700">Chọn tất cả</span></label>`;
+            // insert at the start of footer so it appears left of total
+            foot.insertBefore(wrap, foot.firstChild);
+          }
+
+          const selAll = foot.querySelector('#cartSelectAll');
+          if (selAll) {
+            // set initial checked state (all selected?)
+            const totalItems = cart.length;
+            const selectedCount = Object.keys(cartSelections).length;
+            selAll.checked = totalItems > 0 && selectedCount === totalItems;
+
+            selAll.onchange = (ev) => {
+              if (ev.target.checked) {
+                // select all current items
+                cart.forEach((_, i) => { cartSelections[i] = true; });
+              } else {
+                // unselect all
+                cartSelections = {};
+              }
+              // re-render to update checkboxes and total
+              try { updateCartUI(); } catch(e){}
+            };
+          }
+        }
+      }
+    }catch(e){ /* ignore */ }
   }, 10);
   // Show total only for selected items. Per user request, the total should
   // remain 0₫ until the user checks item(s). When panel is hidden, keep 0₫.
@@ -2348,9 +2286,16 @@ function filterByCategory(cat) {
 
 // =================== TRANG WHEY.HTML ===================
 function loadProductsByCategory(category) {
-  const filtered = products.filter((p) => p.category === category);
+  // match category robustly (case-insensitive, trimmed)
+  const wanted = (category || '').toString().toLowerCase().trim();
+  const filtered = products.filter((p) => ((p.category || '').toString().toLowerCase().trim()) === wanted);
   console.log('loadProductsByCategory:', category, 'found', filtered.length);
   renderProducts(filtered);
+  // update any result count node on category pages
+  try {
+    const rc = document.getElementById('resultCount');
+    if (rc) rc.textContent = `${filtered.length} Sản Phẩm`;
+  } catch(e) {}
 }
 
 // =================== XEM CHI TIẾT ===================
@@ -2394,6 +2339,191 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// =================== SEARCH AUTOCOMPLETE ===================
+function initSearchAutocomplete() {
+  const input = document.getElementById('searchInput');
+  const btn = document.getElementById('searchBtn');
+  if (!input) return;
+
+  // find existing suggestions container (some pages use a UL#searchSuggestions with class 'suggestions')
+  let box = document.getElementById('searchSuggestions');
+  let inlineMode = false;
+  if (box) {
+    // If the page provided a UL (product-detail uses <ul id="searchSuggestions" class="hidden">), use inline mode
+    const tag = (box.tagName || '').toLowerCase();
+    if (tag === 'ul' || box.classList.contains('suggestions')) {
+      inlineMode = true;
+      box.classList.add('suggestions');
+      box.setAttribute('role','listbox');
+      // ensure it's a block element
+      box.style.display = 'none';
+    } else {
+      // reuse existing element as fixed panel
+      box.classList.add('search-suggestions');
+      box.setAttribute('aria-hidden','true');
+      box.style.position = 'fixed';
+      box.style.zIndex = 1200;
+    }
+  } else {
+    // create fixed suggestion box appended to body
+    box = document.createElement('div');
+    box.id = 'searchSuggestions';
+    box.className = 'search-suggestions';
+    box.setAttribute('aria-hidden','true');
+    box.style.position = 'fixed';
+    box.style.zIndex = 1200;
+    document.body.appendChild(box);
+  }
+
+  // helper to position/size the suggestions
+  function positionBox() {
+    try {
+      const rect = input.getBoundingClientRect();
+      if (inlineMode) {
+        // position relative to the .search container (assumed position:relative in CSS)
+        const parent = input.closest('.search') || input.parentElement || document.body;
+        const pRect = parent.getBoundingClientRect();
+        const left = rect.left - pRect.left;
+        const top = rect.top - pRect.top + rect.height + 8;
+        box.style.left = Math.max(0, left) + 'px';
+        box.style.top = top + 'px';
+        box.style.width = Math.max(rect.width, 320) + 'px';
+        box.style.position = 'absolute';
+      } else {
+        const headerEl = document.querySelector('.site-header') || document.querySelector('.header') || document.querySelector('header') || document.querySelector('.header-inner');
+        const headerRect = headerEl ? headerEl.getBoundingClientRect() : null;
+        const desiredWidth = Math.max(520, Math.min(920, rect.width || 720));
+        const centerX = headerRect ? (headerRect.left + headerRect.width / 2) : (rect.left + rect.width / 2);
+        const left = Math.round(centerX - desiredWidth / 2);
+        const top = headerRect ? Math.round(headerRect.bottom + 8) : Math.round(rect.top + rect.height + 8);
+        box.style.left = Math.max(8, left) + 'px';
+        box.style.top = top + 'px';
+        box.style.width = desiredWidth + 'px';
+        box.style.position = 'fixed';
+      }
+    } catch(e) { /* ignore */ }
+  }
+  // keep positioned on resize/scroll
+  window.addEventListener('resize', positionBox);
+  window.addEventListener('scroll', positionBox, true);
+
+  let items = [];
+  let focused = -1;
+  let debounceTimer = null;
+
+  function render(list) {
+    box.innerHTML = '';
+    if (!list || !list.length) {
+      if (inlineMode) box.classList.add('hidden'); else { box.style.display = 'none'; box.setAttribute('aria-hidden','true'); }
+      return;
+    }
+    if (inlineMode) {
+      box.classList.remove('hidden');
+    } else {
+      box.style.display = 'block';
+      box.setAttribute('aria-hidden','false');
+    }
+    list.forEach((p, idx) => {
+      if (inlineMode) {
+        const li = document.createElement('li');
+        li.className = 'suggest-item';
+        li.tabIndex = 0;
+        li.innerHTML = `<img src="${p.img||''}" alt="${(p.title||'').replace(/"/g,'')}"><div><div class="si-title">${p.title}</div><div class="si-price">${typeof p.price === 'number' ? formatPrice(p.price) : ''}</div></div>`;
+        li.addEventListener('click', () => { viewProduct(p.id); });
+        li.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') viewProduct(p.id); });
+        box.appendChild(li);
+      } else {
+        const el = document.createElement('div');
+        el.className = 'suggest-item';
+        el.tabIndex = 0;
+        el.innerHTML = `
+        <div class="si-img"><img src="${p.img||''}" alt="${(p.title||'').replace(/"/g,'')}" onerror="this.style.display='none'"></div>
+        <div class="si-body">
+          <div class="si-title">${p.title}</div>
+          <div class="si-price">${typeof p.price === 'number' ? formatPrice(p.price) : ''}</div>
+        </div>`;
+        el.addEventListener('click', () => { viewProduct(p.id); });
+        el.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') viewProduct(p.id); });
+        box.appendChild(el);
+      }
+    });
+    items = Array.from(box.querySelectorAll('.suggest-item'));
+    focused = -1;
+    // ensure box is positioned correctly and scrolled to top for fresh results
+    try { positionBox(); box.scrollTop = 0; } catch(e) {}
+  }
+
+  function doQuery(q) {
+    const v = (q||'').toLowerCase().trim();
+    if (!v) { render([]); return; }
+    // basic contains match on title
+    const list = (products || []).filter(p => (p.title||'').toLowerCase().includes(v)).slice(0,8);
+    render(list);
+  }
+
+  input.addEventListener('input', (e) => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(()=> doQuery(input.value), 160);
+  });
+
+  // also trigger suggestions on focus (helps when typing immediate first character)
+  input.addEventListener('focus', (e) => {
+    // run a quick query for current value (may be empty)
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(()=> doQuery(input.value), 60);
+  });
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (!items.length) return;
+      focused = Math.min(items.length-1, focused+1);
+      items.forEach((it,i)=> it.classList.toggle('focused', i===focused));
+      items[focused]?.focus();
+      return;
+    }
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (!items.length) return;
+      focused = Math.max(0, focused-1);
+      items.forEach((it,i)=> it.classList.toggle('focused', i===focused));
+      items[focused]?.focus();
+      return;
+    }
+    if (e.key === 'Enter') {
+      if (focused >= 0 && items[focused]) {
+        items[focused].click();
+        return;
+      }
+      // fallback: perform search navigation if button exists
+      if (btn) btn.click();
+    }
+    if (e.key === 'Escape') {
+      render([]);
+    }
+  });
+
+  // hide when clicking outside
+  document.addEventListener('click', (ev) => {
+    if (ev.target === input || ev.target.closest('#searchSuggestions')) return;
+    render([]);
+  });
+
+  // wire search button to navigate to search results (if implemented)
+  if (btn) btn.addEventListener('click', (ev) => {
+    const q = (input.value||'').trim();
+    if (!q) return;
+    // simplest behavior: try exact page with query param or call doSearchQuery if available
+    if (typeof doSearchQuery === 'function') { doSearchQuery(q); return; }
+    // fallback: build search results page (if exists)
+    const href = `search.html?q=${encodeURIComponent(q)}`;
+    window.location.href = href;
+  });
+}
+
+// Initialize autocomplete after DOM + products are ready
+document.addEventListener('DOMContentLoaded', () => { initSearchAutocomplete(); });
 
 // =================== AUTO-ADD PRODUCTS WHEN ENTERING CERTAIN CATEGORY PAGES ===================
 // Behavior:
@@ -2487,7 +2617,10 @@ document.addEventListener('DOMContentLoaded', () => {
   toAdd.forEach(p => addToCart(p.id));
   sessionStorage.setItem(sessionKey, '1');
   updateCartUI();
-  showToast(`${toAdd.length} sản phẩm '${pageCategory}' đã được thêm vào giỏ hàng`);
+  // show auto-add toast unless globally suppressed
+  if (!window.SUPPRESS_ADD_TO_CART_TOAST) {
+    try { showToast(`${toAdd.length} sản phẩm '${pageCategory}' đã được thêm vào giỏ hàng`); } catch(e){}
+  }
   return toAdd.length;
 }
 
@@ -2515,8 +2648,11 @@ function addToWishlist(id, flavor) {
   localStorage.setItem('wishlist', JSON.stringify(wishlist));
   showToast(`${p.title} đã được thêm vào yêu thích`);
   // notify UI (header) and other pages
-  updateWishlistUI();
+  try { updateWishlistUI(); } catch(e) {}
+  try { forceUpdateWishlistBadges(); } catch(e) {}
   try { window.dispatchEvent(new CustomEvent('wishlistChanged', { detail: { added: p.id, flavor: keyFlavor } })); } catch(e) {}
+  // Debug log when enabled
+  try { if (localStorage.getItem('debugWishlist') === '1') console.debug('[wishlist] added', { id: p.id, title: p.title, flavor: keyFlavor, count: wishlist.length }); } catch(e) {}
 }
 
 function removeFromWishlist(id, flavor) {
@@ -2530,8 +2666,30 @@ function removeFromWishlist(id, flavor) {
   const keyFlavor = (flavor || '').toString();
   wishlist = wishlist.filter(item => !(item.id === id && (item.flavor || '') === keyFlavor));
   localStorage.setItem('wishlist', JSON.stringify(wishlist));
-  updateWishlistUI();
+  try { updateWishlistUI(); } catch(e) {}
+  try { forceUpdateWishlistBadges(); } catch(e) {}
   try { window.dispatchEvent(new CustomEvent('wishlistChanged', { detail: { removed: id, flavor: keyFlavor } })); } catch(e) {}
+  // Debug log when enabled
+  try { if (localStorage.getItem('debugWishlist') === '1') console.debug('[wishlist] removed', { id: id, flavor: keyFlavor, count: wishlist.length }); } catch(e) {}
+}
+
+// Ensure there is a visible wishlist button / badge in the header area.
+function ensureWishlistButton() {
+  try {
+    if (document.getElementById('wishlistBtn')) return;
+    // try common header containers where action icons live
+    const container = document.querySelector('.right-block') || document.querySelector('.header-inner') || document.querySelector('header') || document.querySelector('.site-header') || document.body;
+    if (!container) return;
+    const a = document.createElement('a');
+    a.href = 'yeuThich.html';
+    a.id = 'wishlistBtn';
+    a.className = 'cart icon-btn';
+    a.title = 'Sản phẩm yêu thích';
+    a.setAttribute('aria-label', 'Sản phẩm yêu thích: 0');
+    a.innerHTML = `<i class="fa-regular fa-heart"></i><span id="wishlistCount">0</span>`;
+    // append to container; prefer appending at the end so layout stays stable
+    container.appendChild(a);
+  } catch (e) { /* ignore */ }
 }
 
 function updateWishlistUI() {
@@ -2542,10 +2700,18 @@ function updateWishlistUI() {
     wishlist = [];
   }
   
+  // make sure header has a visible wishlist button / badge across pages
+  ensureWishlistButton();
   const wishlistBtn = document.getElementById('wishlistBtn');
-  const wishlistCountEl = wishlistBtn?.querySelector('span');
+  // prefer the explicit #wishlistCount element if present
+  let wishlistCountEl = document.getElementById('wishlistCount');
+  if (!wishlistCountEl) wishlistCountEl = wishlistBtn?.querySelector('span');
   if (wishlistCountEl) {
     wishlistCountEl.textContent = wishlist.length > 0 ? wishlist.length : '0';
+    // accessibility: expose aria-label for screen readers
+    try { wishlistBtn.setAttribute('aria-label', `Sản phẩm yêu thích: ${wishlist.length}`); } catch(e){}
+    // visual hint
+    if (wishlist.length > 0) wishlistBtn.classList.add('has-wishlist'); else wishlistBtn.classList.remove('has-wishlist');
   }
 }
 
@@ -2561,9 +2727,11 @@ window.addEventListener('storage', (e) => { if (e.key === 'wishlist') try { upda
 window.addEventListener('wishlistChanged', (ev) => {
   try {
     updateWishlistUI();
+    try { updateCardWishlistMarks(); } catch(e) {}
     // also update any page-scoped badge helper if present
     try { if (typeof updateWishlistBadge === 'function') updateWishlistBadge(); } catch(e) {}
     try { if (typeof pulseWishlistCount === 'function') pulseWishlistCount(); } catch(e) {}
+    try { renderWishlistPreview(); } catch(e) {}
   } catch (e) { /* ignore */ }
 });
 
@@ -2574,6 +2742,7 @@ function syncWishlistBadgeOnce() {
     const arr = JSON.parse(raw);
     const count = Array.isArray(arr) ? arr.length : 0;
     // update known id
+    ensureWishlistButton();
     const byId = document.getElementById('wishlistCount');
     if (byId) byId.textContent = count > 0 ? count : '0';
     // update span inside wishlistBtn if present
@@ -2634,31 +2803,56 @@ document.addEventListener('click', (e) => {
   e.stopPropagation();
 });
 
-// Update heart icons on page load
-document.addEventListener('DOMContentLoaded', () => {
-  let wishlist = [];
-  try {
-    wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-  } catch (e) {
-    wishlist = [];
+// Extra: defensive listener to force-sync wishlist UI after any wishlist-like click
+document.addEventListener('click', function _forceWishlistSyncAfterClick(e){
+  try{
+    const withinDebug = e.target.closest && e.target.closest('#debugWishlistPanel');
+    if (withinDebug) return; // ignore clicks inside debug panel
+    const isWishlistBtn = !!(e.target.closest && (e.target.closest('.icon-circle[title="Yêu thích"]') || e.target.closest('.wishlist-toggle') || e.target.closest('[data-wishlist-action]')));
+    const isHeartIcon = e.target.classList && (e.target.classList.contains('fa-heart') || e.target.classList.contains('fa-regular') || e.target.classList.contains('fa-solid'));
+    if (!isWishlistBtn && !isHeartIcon) return;
+
+    // run a short delay to allow addToWishlist/removeFromWishlist to update localStorage
+    setTimeout(()=>{
+      try { if (typeof updateWishlistUI === 'function') updateWishlistUI(); } catch(e){}
+      try { if (typeof forceUpdateWishlistBadges === 'function') forceUpdateWishlistBadges(); } catch(e){}
+      try { if (typeof updateCardWishlistMarks === 'function') updateCardWishlistMarks(); } catch(e){}
+      try { if (typeof renderWishlistPreview === 'function') renderWishlistPreview(); } catch(e){}
+    }, 80);
+  }catch(ex){ /* ignore */ }
+});
+
+// Ensure card hearts reflect wishlist on initial load
+document.addEventListener('DOMContentLoaded', () => { try { updateCardWishlistMarks(); } catch(e) {} try { renderWishlistPreview(); } catch(e) {} });
+
+// Ensure card overlay (heart/compare) is visible by injecting minimal styles
+function ensureCardOverlayStyles(){
+  try{
+    if (document.getElementById('cardOverlayStyles')) return;
+    const s = document.createElement('style');
+    s.id = 'cardOverlayStyles';
+    s.textContent = `
+      .card{ position: relative; }
+      .card-overlays{ position: absolute; top: 8px; right: 8px; display:flex; flex-direction:column; gap:6px; z-index:5 }
+      .card-overlays .icon-circle{ background: rgba(255,255,255,0.98); border-radius:6px; padding:6px; border:1px solid rgba(0,0,0,0.06); cursor:pointer }
+      .icon-circle i{ color: #444 }
+      .icon-circle:hover{ transform: translateY(-1px); }
+    `;
+    document.head.appendChild(s);
+  }catch(e){}
+}
+
+try { document.addEventListener('DOMContentLoaded', ensureCardOverlayStyles); } catch(e){}
+// If the script is loaded after the document's ready event, make sure
+// wishlist UI is initialized immediately (fix pages that include the
+// script at the end of body so they miss DOMContentLoaded listeners).
+try {
+  if (document.readyState !== 'loading') {
+    try { updateWishlistUI(); } catch(e) {}
+    try { startWishlistSync(); } catch(e) {}
+    try { window.dispatchEvent(new Event('wishlistChanged')); } catch(e){}
   }
-  
-  document.querySelectorAll('.card').forEach(card => {
-    const productId = parseInt(card.getAttribute('data-id'), 10);
-    const inWishlist = wishlist.some(item => item.id === productId);
-    if (inWishlist) {
-      const heartBtn = card.querySelector('.icon-circle[title="Yêu thích"]');
-      if (heartBtn) {
-        const heartIcon = heartBtn.querySelector('i');
-        if (heartIcon) {
-          heartIcon.classList.remove('fa-regular');
-          heartIcon.classList.add('fa-solid');
-          heartBtn.style.color = '#ff6b35';
-        }
-      }
-    }
-  });
-});  // expose test helper for debugging
+} catch(e) { /* ignore */ }
   window.testAutoAdd = function() {
     try {
       const fname = filename;

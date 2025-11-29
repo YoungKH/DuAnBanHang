@@ -23,7 +23,7 @@
           <a href="TrangChu.html" class="brand">
             <img src="/IMG/logo1.png" alt="logo" />
           </a>
-          <div class="catalog-btn"><i class="fa fa-bars"></i> Danh Mục Sản Phẩm</div>
+          <div class="catalog-btn" aria-label="Mở danh mục"><i class="fa fa-bars"></i> <span class="cat-label">Danh Mục Sản Phẩm</span></div>
         </div>
       </div>
 
@@ -48,7 +48,7 @@
 
   <div class="page container">
     <aside class="sidebar">
-      <h4>Danh mục sản phẩm</h4>
+      <h4></h4>
       <ul class="cat-list">
         <li><a href="whey.html">Whey Protein</a></li>
         <li><a href="creatine.html">Creatine</a></li>
@@ -481,6 +481,85 @@
 
   <script src="phonggym.js"></script>
   <script>
+    // Ensure wishlist badge updates on homepage even if scripts loaded in different order
+    setTimeout(() => {
+      try {
+        if (typeof forceUpdateWishlistBadges === 'function') {
+          forceUpdateWishlistBadges();
+        } else if (typeof updateWishlistUI === 'function') {
+          updateWishlistUI();
+        }
+      } catch (e) { /* ignore */ }
+    }, 60);
+  </script>
+  <script>
+    // Short-lived polling fallback: try to update wishlist badge a few times
+    (function(){
+      try {
+        let attempts = 0;
+        const id = setInterval(()=>{
+          try {
+            if (typeof forceUpdateWishlistBadges === 'function') forceUpdateWishlistBadges();
+            else if (typeof updateWishlistUI === 'function') updateWishlistUI();
+          } catch(e){}
+          attempts++;
+          if (attempts > 20) { clearInterval(id); }
+        }, 150);
+        // stop after ~3s
+        setTimeout(()=>{ try{ clearInterval(id); }catch(e){} }, 3500);
+      } catch(e) {}
+    })();
+  </script>
+  <script>
+    // Mạnh tay: cập nhật mọi badge tim trên header từ localStorage trực tiếp.
+    // Đây là backup để đảm bảo trang chủ luôn hiển thị đúng số sản phẩm yêu thích.
+    (function(){
+      function readWishlistCount(){
+        try { return JSON.parse(localStorage.getItem('wishlist') || '[]').length; } catch(e) { return 0; }
+      }
+
+      function updateHeaderWishlistBadges(){
+        try {
+          const count = readWishlistCount();
+          // update explicit id nodes
+          document.querySelectorAll('#wishlistCount').forEach(el => { el.textContent = count > 0 ? String(count) : '0'; });
+
+          // Find heart icons in header and update/insert badge span next to them
+          const icons = Array.from(document.querySelectorAll('.header-inner i.fa-heart, .icon-btn i.fa-heart, header i.fa-heart'));
+          icons.forEach(icon => {
+            const container = icon.closest('a,button,div') || icon.parentElement;
+            if (!container) return;
+            // prefer an existing span child
+            let badge = container.querySelector('span') || icon.nextElementSibling;
+            if (badge && badge.tagName === 'SPAN') {
+              try { badge.textContent = count > 0 ? String(count) : '0'; } catch(e){}
+            } else {
+              // create small badge if not present
+              const s = document.createElement('span');
+              s.id = 'wishlistCount';
+              s.textContent = count > 0 ? String(count) : '0';
+              s.style.cssText = 'position:relative;margin-left:6px;background:#ff3b30;color:#fff;padding:3px 6px;border-radius:50%;font-size:11px';
+              container.appendChild(s);
+            }
+            // toggle visual class
+            try {
+              if (count > 0) container.classList.add('has-wishlist'); else container.classList.remove('has-wishlist');
+              container.setAttribute('aria-label', `Sản phẩm yêu thích: ${count}`);
+            } catch(e){}
+          });
+        } catch(e) { /* ignore */ }
+      }
+
+      // Run immediately and on events
+      try { updateHeaderWishlistBadges(); } catch(e){}
+      window.addEventListener('storage', (e)=>{ if (e.key === 'wishlist') try{ updateHeaderWishlistBadges(); }catch(e){} });
+      window.addEventListener('wishlistChanged', ()=>{ try{ updateHeaderWishlistBadges(); }catch(e){} });
+      // extra retries to cover race conditions
+      setTimeout(updateHeaderWishlistBadges, 200);
+      setTimeout(updateHeaderWishlistBadges, 800);
+    })();
+  </script>
+  <script>
     // Initialize header badges and handle back/forward navigation (pageshow)
     function initHeaderBadges(){
       try {
@@ -498,6 +577,8 @@
         if (typeof updateCartUI === 'function') updateCartUI();
         if (typeof updateWishlistUI === 'function') updateWishlistUI();
         else if (typeof updateWishlistBadge === 'function') updateWishlistBadge();
+        // Force-update any wishlist badges (covers header variants)
+        try { if (typeof forceUpdateWishlistBadges === 'function') forceUpdateWishlistBadges(); } catch(e){}
       } catch (e) { console.error('initHeaderBadges', e); }
     }
 

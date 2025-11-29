@@ -17,7 +17,7 @@
           <a href="TrangChu.html" class="brand">
             <img src="/IMG/logo1.png" alt="logo" />
           </a>
-          <div class="catalog-btn"><i class="fa fa-bars"></i> Danh Mục Sản Phẩm</div>
+          <div class="catalog-btn"><i class="fa fa-bars"></i> <span class="cat-label">Danh Mục Sản Phẩm</span></div>
         </div>
       </div>
 
@@ -228,6 +228,61 @@
       }
     });
   </script>
+  <script>
+    // Ensure wishlist badge is updated on Sale page (fallbacks for timing/DOM differences)
+    (function(){
+      function invokeUpdater(){
+        try{
+          if (typeof forceUpdateWishlistBadges === 'function') { forceUpdateWishlistBadges(); return true; }
+          if (typeof updateWishlistUI === 'function') { updateWishlistUI(); return true; }
+        }catch(e){}
+        return false;
+      }
+
+      if (!invokeUpdater()) setTimeout(() => { invokeUpdater(); }, 80);
+      let attempts = 0; const maxAttempts = 12;
+      const poll = setInterval(()=>{ attempts++; if (invokeUpdater() || attempts>=maxAttempts) clearInterval(poll); }, 150);
+
+      window.addEventListener('storage', () => { invokeUpdater(); });
+      window.addEventListener('wishlistChanged', () => { invokeUpdater(); });
+    })();
+  </script>
+    <script>
+      // Backup mạnh: cập nhật mọi badge tim trên header từ localStorage trực tiếp (giống TrangChu)
+      (function(){
+        function readWishlistCount(){ try { return JSON.parse(localStorage.getItem('wishlist') || '[]').length; } catch(e) { return 0; } }
+
+        function updateHeaderWishlistBadges(){
+          try {
+            const count = readWishlistCount();
+            document.querySelectorAll('#wishlistCount').forEach(el => { el.textContent = count > 0 ? String(count) : '0'; });
+
+            const icons = Array.from(document.querySelectorAll('.header-inner i.fa-heart, .icon-btn i.fa-heart, header i.fa-heart'));
+            icons.forEach(icon => {
+              const container = icon.closest('a,button,div') || icon.parentElement;
+              if (!container) return;
+              let badge = container.querySelector('span') || icon.nextElementSibling;
+              if (badge && badge.tagName === 'SPAN') {
+                try { badge.textContent = count > 0 ? String(count) : '0'; } catch(e){}
+              } else {
+                const s = document.createElement('span');
+                s.id = 'wishlistCount';
+                s.textContent = count > 0 ? String(count) : '0';
+                s.style.cssText = 'position:relative;margin-left:6px;background:#ff3b30;color:#fff;padding:3px 6px;border-radius:50%;font-size:11px';
+                container.appendChild(s);
+              }
+              try { if (count > 0) container.classList.add('has-wishlist'); else container.classList.remove('has-wishlist'); container.setAttribute('aria-label', `Sản phẩm yêu thích: ${count}`); } catch(e){}
+            });
+          } catch(e) {}
+        }
+
+        try { updateHeaderWishlistBadges(); } catch(e){}
+        window.addEventListener('storage', (e)=>{ if (e.key === 'wishlist') try{ updateHeaderWishlistBadges(); }catch(e){} });
+        window.addEventListener('wishlistChanged', ()=>{ try{ updateHeaderWishlistBadges(); }catch(e){} });
+        setTimeout(updateHeaderWishlistBadges, 200);
+        setTimeout(updateHeaderWishlistBadges, 800);
+      })();
+    </script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const applyBtn = document.getElementById('applyFilters');
